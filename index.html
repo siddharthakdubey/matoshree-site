@@ -93,11 +93,34 @@ footer h3{color:#fff;font-size:17px;margin-bottom:6px}
 .flogo img{height:58px;width:auto;display:block}
 .soon{border:1px dashed #9fb3d6;border-radius:8px;padding:6px 10px;display:inline-block}
 .legal{border-top:1px solid #2c4876;margin-top:22px;padding-top:14px;font-size:14px;color:#9fb3d6}
+
+.stat{background:var(--sun);color:var(--ink);text-align:center;padding:22px 0}
+.stat b{display:block;font-size:clamp(48px,12vw,72px);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:20px;font-weight:700}
+@media(max-width:560px){
+ .gov .more{display:none}
+ .out .x{display:none}
+ .fgrid>div:first-child{display:none}
+ .pipe p{font-size:15px}
+ section{padding:34px 0}
+}
+
+.hero{background:#fff;color:var(--ink);padding:40px 0 48px}
+.hero .wrap{display:grid;gap:28px;align-items:center;grid-template-columns:1.25fr .75fr}
+.hero h1{color:var(--ink)}
+.hero p{color:#33415c}
+.hero b{color:var(--sun-d)}
+.hero .logo{text-align:center}
+.hero .logo img{width:100%;max-width:340px;height:auto}
+.count{display:flex;align-items:center;gap:14px;margin-top:26px;border-left:6px solid var(--sun);padding-left:14px}
+.count b{font-size:clamp(44px,9vw,60px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.count span{font-weight:700;font-size:19px;line-height:1.3}
+@media(max-width:700px){.hero .wrap{grid-template-columns:1fr}.hero .logo{display:none}}
 </style>
 </head>
 <body data-lang="hi">
 
-<a class="gov" href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener"><div class="wrap"><span class="hi">📢 <b>पीएम सूर्य घर: मुफ़्त बिजली योजना</b>। 1 करोड़ घरों को हर महीने 300 यूनिट तक मुफ़्त बिजली का लक्ष्य। <u>सरकारी पोर्टल देखें</u></span><span class="en">📢 <b>PM Surya Ghar: Muft Bijli Yojana</b>. Aim: up to 300 units of free electricity a month for 1 crore households. <u>Visit official portal</u></span></div></a>
+<a class="gov" href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener"><div class="wrap"><span class="hi">📢 <b>पीएम सूर्य घर: मुफ़्त बिजली योजना</b><span class="more">। 1 करोड़ घरों को हर महीने 300 यूनिट तक मुफ़्त बिजली का लक्ष्य।</span> <u>सरकारी पोर्टल देखें</u></span><span class="en">📢 <b>PM Surya Ghar: Muft Bijli Yojana</b><span class="more">. Aim: up to 300 units of free electricity a month for 1 crore households.</span> <u>Visit official portal</u></span></div></a>
 <header><div class="wrap">
   <a class="brand" href="#" aria-label="Matoshree Enterprises"><img src="logo.png" width="300" height="207" alt="Matoshree: Powering Your Savings with Solar"></a>
   <div class="lang" role="group" aria-label="Language">
@@ -108,12 +131,16 @@ footer h3{color:#fff;font-size:17px;margin-bottom:6px}
 
 <main>
 <div class="hero"><div class="wrap">
-  <h1><span class="hi">अपनी छत पर सोलर लगवाएं, <b>बिजली बिल घटाएं</b></span><span class="en">Put solar on your roof and <b>cut your electricity bill</b></span></h1>
-  <p><span class="hi">सरकार से <b>₹78,000 तक की सब्सिडी</b>। फ्री सर्वे, सही साइज़, और पूरा कागज़ी काम हम करते हैं।</span><span class="en">Get up to <b>₹78,000 government subsidy</b>. Free survey, right system size, and we handle all the paperwork.</span></p>
-  <div class="btns">
-    <a class="btn sun" href="#quote"><span class="hi">फ्री कोटेशन पाएं</span><span class="en">Get free quote</span></a>
-    <a class="btn wa" data-wa href="#"><span class="hi">WhatsApp करें</span><span class="en">WhatsApp us</span></a>
+  <div>
+    <h1><span class="hi">अपनी छत पर सोलर लगवाएं, <b>बिजली बिल घटाएं</b></span><span class="en">Put solar on your roof and <b>cut your electricity bill</b></span></h1>
+    <p><span class="hi">सरकार से <b>₹78,000 तक की सब्सिडी</b>। फ्री सर्वे, सही साइज़, और पूरा कागज़ी काम हम करते हैं।</span><span class="en">Get up to <b>₹78,000 government subsidy</b>. Free survey, right system size, and we handle all the paperwork.</span></p>
+    <div class="btns">
+      <a class="btn sun" href="#quote"><span class="hi">फ्री कोटेशन पाएं</span><span class="en">Get free quote</span></a>
+      <a class="btn wa" data-wa href="#"><span class="hi">WhatsApp करें</span><span class="en">WhatsApp us</span></a>
+    </div>
+    <div class="count"><b id="orders" aria-label="92">92</b><span class="hi">ऑर्डर सफलतापूर्वक<br>पूरे हुए</span><span class="en">Orders successfully<br>completed</span></div>
   </div>
+  <div class="logo"><img src="logo-large.jpg" width="560" height="387" alt="Matoshree: Powering Your Savings with Solar"></div>
 </div></div>
 
 <section><div class="wrap">
@@ -139,12 +166,12 @@ footer h3{color:#fff;font-size:17px;margin-bottom:6px}
     <div class="out" id="out" aria-live="polite">
       <dl>
         <dt><span class="hi">सुझाया गया सिस्टम</span><span class="en">Suggested system</span></dt><dd id="r-kw"></dd>
-        <dt><span class="hi">हर महीने बिजली बनेगी</span><span class="en">Monthly generation</span></dt><dd id="r-gen"></dd>
+        <dt class="x"><span class="hi">हर महीने बिजली बनेगी</span><span class="en">Monthly generation</span></dt><dd class="x" id="r-gen"></dd>
         <dt><span class="hi">लगभग खर्च</span><span class="en">Approx. cost</span></dt><dd id="r-cost"></dd>
         <dt><span class="hi">सरकारी सब्सिडी</span><span class="en">Government subsidy</span></dt><dd id="r-sub"></dd>
         <dt class="pay"><span class="hi">आपको देना होगा</span><span class="en">You pay</span></dt><dd class="pay" id="r-pay"></dd>
         <dt><span class="hi">हर महीने बचत</span><span class="en">Monthly saving</span></dt><dd id="r-save"></dd>
-        <dt><span class="hi">हर साल बचत</span><span class="en">Yearly saving</span></dt><dd id="r-year"></dd>
+        <dt class="x"><span class="hi">हर साल बचत</span><span class="en">Yearly saving</span></dt><dd class="x" id="r-year"></dd>
         <dt><span class="hi">पैसा वसूल होने में</span><span class="en">Pays back in</span></dt><dd id="r-pb"></dd>
       </dl>
       <p class="note"><span class="hi">यह सिर्फ अनुमान है। सही कोटेशन फ्री सर्वे के बाद मिलेगा।</span><span class="en">This is only an estimate. Exact quote after the free survey.</span></p>
@@ -215,11 +242,12 @@ footer h3{color:#fff;font-size:17px;margin-bottom:6px}
 <script>
 /* ---- EDIT THESE ---- */
 var CFG = {
-  phone: "919999999999",          // number with country code, no +
-  phoneShow: "+91 99999 99999",
+  phone: "919278068708",          // number with country code, no +
+  phoneShow: "+91 6393668708",
   email: "info@matoshreesolar.in",  // dummy, update
   fixedCost: 15000,               // ₹ fixed cost (wiring, mounting, net-meter work), update
   costPerKw: 55000,               // ₹ per kW installed, update with real pricing
+  orders: 92,                    // completed orders shown in the counter, update
   maxKw: 10,                      // largest size the calculator suggests
   tariff: 7,                      // ₹ per unit, approx
   unitsPerKwMonth: 120,           // units generated per kW per month
@@ -278,6 +306,21 @@ document.getElementById("f").onsubmit=function(e){
   if(CFG.formEndpoint){ try{fetch(CFG.formEndpoint,{method:"POST",mode:"no-cors",body:JSON.stringify(d)})}catch(x){} }
   window.open(wa("नमस्ते, मैं "+n+" ("+p+"), "+d.city+". बिजली बिल ₹"+(d.bill||"-")+". कृपया फ्री सर्वे और कोटेशन दें।"),"_blank");
 };
+
+(function(){
+  var el=document.getElementById("orders"), end=CFG.orders;
+  el.setAttribute("aria-label",end);
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=end;return}
+  var t0=null, dur=2200;
+  el.textContent=1;
+  function tick(ts){
+    if(t0===null) t0=ts;
+    var p=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.max(1,Math.round(end*e));
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
 </script>
 </body>
 </html>
