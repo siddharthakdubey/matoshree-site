@@ -9,7 +9,7 @@
   },
   "d1_databases": [
     {
-      "binding": "matoshree_db",
+      "binding": "DB",
       "database_name": "matoshree-db",
       "database_id": "650bc008-9a21-4ddc-8523-2cee2273e35d"
     }

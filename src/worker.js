@@ -187,7 +187,10 @@ async function admin(req, env, url) {
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
+    // The D1 binding must be named DB (wrangler.jsonc). Accept the name wrangler suggests too.
+    if (!env.DB && env.matoshree_db) env = { ...env, DB: env.matoshree_db };
     try {
+      if (url.pathname.startsWith("/api/") && !env.DB) throw new Error("D1 database is not bound: in wrangler.jsonc the binding name must be DB");
       if (url.pathname.startsWith("/api/")) await ensureSchema(env);
       if (url.pathname === "/api/stats" && req.method === "GET") {
         return json({ orders: await getOrders(env) }, 200, { "Cache-Control": "public, max-age=60" });
