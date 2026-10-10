@@ -146,6 +146,12 @@ section{scroll-margin-top:72px}
 .gallery figcaption{padding:10px 12px;font-weight:600;font-size:16px;line-height:1.35}
 .gallery figcaption small{display:block;font-weight:400;color:var(--muted);font-size:14px}
 @media(max-width:560px){.gallery{grid-template-columns:1fr 1fr;gap:8px}.gallery figcaption{padding:8px;font-size:14px}.hright{gap:6px}.lang button{padding:6px 10px}}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(10,25,50,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal .box{background:#fff;color:var(--ink);border-radius:16px;padding:26px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.modal .ok{font-size:44px;line-height:1}
+.modal h3{font-size:24px;margin:8px 0 6px}
+.modal p{font-weight:600;line-height:1.5}
+.modal .btn.alt{background:#fff;color:var(--ink);border:2px solid var(--line)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -253,10 +259,14 @@ section{scroll-margin-top:72px}
     <p id="err" role="alert" style="color:#ffd27a;margin-top:10px;font-weight:600"></p>
     <button class="btn sun" type="submit"><span class="hi">भेजें, हम कॉल करेंगे</span><span class="en">Send, we will call you</span></button>
   </form>
-  <div id="thanks" role="status" hidden style="background:#fff;color:var(--ink);border-radius:14px;padding:22px;font-weight:600">
-    <div style="font-size:24px;margin-bottom:6px">✅ <span class="hi">धन्यवाद!</span><span class="en">Thank you!</span></div>
-    <span class="hi">आपकी जानकारी मिल गई। हमारी टीम जल्द ही आपको कॉल करेगी।</span><span class="en">We have received your details. Our team will call you shortly.</span>
-    <a class="btn wa" data-wa href="#" style="margin-top:14px;display:block"><span class="hi">WhatsApp पर भी बात करें</span><span class="en">Chat on WhatsApp too</span></a>
+  <div id="thanks" class="modal" role="dialog" aria-modal="true" aria-labelledby="thTitle" hidden>
+    <div class="box">
+      <div class="ok">✅</div>
+      <h3 id="thTitle"><span class="hi">धन्यवाद!</span><span class="en">Thank you!</span></h3>
+      <p><span class="hi">आपकी जानकारी मिल गई है। हमारी टीम 24 घंटे के अंदर आपको कॉल करेगी।</span><span class="en">We have received your details. Our team will call you within 24 hours.</span></p>
+      <a class="btn wa" data-wa href="#" style="margin-top:14px;display:block"><span class="hi">WhatsApp पर भी बात करें</span><span class="en">Chat on WhatsApp too</span></a>
+      <button type="button" class="btn alt" id="thClose" style="margin-top:10px;width:100%"><span class="hi">ठीक है</span><span class="en">OK</span></button>
+    </div>
   </div>
 </div></section>
 
@@ -352,11 +362,19 @@ document.getElementById("f").onsubmit=function(e){
   }
   err.textContent="";
   var d={name:n,phone:p,city:f.city.value,bill:f.bill.value,website:f.website.value,lang:body.dataset.lang};
-  var fallback=function(){window.open(wa("नमस्ते, मैं "+n+" ("+p+"), "+d.city+". बिजली बिल ₹"+(d.bill||"-")+". कृपया फ्री सर्वे और कोटेशन दें।"),"_blank")};
+  var thanks=document.getElementById("thanks");
+  function closeThanks(){thanks.hidden=true}
+  document.getElementById("thClose").onclick=closeThanks;
+  thanks.onclick=function(ev){if(ev.target===thanks)closeThanks()};
+  document.addEventListener("keydown",function(ev){if(ev.key==="Escape")closeThanks()});
   btn.disabled=true;
   fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
-    .then(function(r){ if(!r.ok) throw new Error(r.status); f.hidden=true; document.getElementById("thanks").hidden=false; })
-    .catch(function(){ fallback(); btn.disabled=false; });
+    .then(function(r){ if(!r.ok) throw new Error(r.status); f.reset(); thanks.hidden=false; document.getElementById("thClose").focus(); })
+    .catch(function(){
+      // Do not pretend it worked: show an error with a one-tap WhatsApp option instead of silently redirecting.
+      err.textContent = body.dataset.lang==="hi" ? "अभी जानकारी नहीं भेज पाए। कृपया दोबारा कोशिश करें या नीचे बटन से WhatsApp करें।" : "We could not send your details right now. Please try again, or use the WhatsApp button in the bar below.";
+    })
+    .then(function(){ btn.disabled=false });
 };
 
 (function(){

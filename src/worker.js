@@ -26,6 +26,45 @@ async function getOrders(env) {
   return row ? parseInt(row.value, 10) || 0 : 0;
 }
 
+
+// Self-healing schema: creates missing tables and adds missing columns, so an older
+// or partly-run schema.sql can never break the site. Runs once per worker instance.
+const TABLES = [
+  "CREATE TABLE IF NOT EXISTS leads (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL DEFAULT (datetime('now')), name TEXT NOT NULL, phone TEXT NOT NULL, city TEXT, bill INTEGER, lang TEXT, status TEXT NOT NULL DEFAULT 'new', note TEXT, ip_hash TEXT)",
+  "CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL)",
+  "CREATE TABLE IF NOT EXISTS photos (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL DEFAULT (datetime('now')), data TEXT NOT NULL)",
+  "CREATE TABLE IF NOT EXISTS installations (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL DEFAULT (datetime('now')), title TEXT NOT NULL, city TEXT, kw REAL, photo_id INTEGER, visible INTEGER NOT NULL DEFAULT 1)",
+];
+const COLUMNS = {
+  leads: [["city", "TEXT"], ["bill", "INTEGER"], ["lang", "TEXT"], ["status", "TEXT NOT NULL DEFAULT 'new'"], ["note", "TEXT"], ["ip_hash", "TEXT"]],
+  installations: [["city", "TEXT"], ["kw", "REAL"], ["photo_id", "INTEGER"], ["visible", "INTEGER NOT NULL DEFAULT 1"]],
+};
+let schemaReady = null;
+function ensureSchema(env) {
+  if (!schemaReady) {
+    schemaReady = (async () => {
+      for (const sql of TABLES) await env.DB.prepare(sql).run();
+      for (const [table, cols] of Object.entries(COLUMNS)) {
+        const have = (await env.DB.prepare(`PRAGMA table_info(${table})`).all()).results.map((r) => r.name);
+        for (const [name, def] of cols)
+          if (!have.includes(name)) await env.DB.prepare(`ALTER TABLE ${table} ADD COLUMN ${name} ${def}`).run();
+      }
+      await env.DB.prepare(
+        "INSERT INTO settings (key,value) SELECT 'orders_completed','92' WHERE NOT EXISTS (SELECT 1 FROM settings WHERE key='orders_completed')"
+      ).run();
+    })().catch((e) => { schemaReady = null; throw e; });
+  }
+  return schemaReady;
+}
+
+// Update-then-insert works on any table layout (no reliance on ON CONFLICT).
+async function setOrders(env, n) {
+  const r = await env.DB.prepare("UPDATE settings SET value=? WHERE key='orders_completed'").bind(String(n)).run();
+  if (!r.meta || !r.meta.changes)
+    await env.DB.prepare("INSERT INTO settings (key,value) VALUES ('orders_completed',?)").bind(String(n)).run();
+}
+async function bumpOrders(env) { await setOrders(env, (await getOrders(env)) + 1); }
+
 async function saveLead(req, env) {
   let b;
   try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
@@ -96,9 +135,7 @@ async function admin(req, env, url) {
     let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
     const n = parseInt(b.orders, 10);
     if (!Number.isFinite(n) || n < 0 || n > 100000) return json({ error: "bad_number" }, 400);
-    await env.DB.prepare(
-      "INSERT INTO settings (key,value) VALUES ('orders_completed',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value"
-    ).bind(String(n)).run();
+    await setOrders(env, n);
     return json({ ok: true, orders: n });
   }
   if (path === "/api/admin/installations" && req.method === "GET") {
@@ -127,10 +164,7 @@ async function admin(req, env, url) {
     await env.DB.prepare("INSERT INTO installations (title,city,kw,photo_id) VALUES (?,?,?,?)")
       .bind(title, city, kw, photoId).run();
     if (b.increment) {
-      await env.DB.prepare(
-        "INSERT INTO settings (key,value) VALUES ('orders_completed','1') " +
-        "ON CONFLICT(key) DO UPDATE SET value=CAST(value AS INTEGER)+1"
-      ).run();
+      await bumpOrders(env);
     }
     return json({ ok: true, orders: await getOrders(env) });
   }
@@ -154,6 +188,7 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     try {
+      if (url.pathname.startsWith("/api/")) await ensureSchema(env);
       if (url.pathname === "/api/stats" && req.method === "GET") {
         return json({ orders: await getOrders(env) }, 200, { "Cache-Control": "public, max-age=60" });
       }
@@ -175,7 +210,10 @@ export default {
       if (url.pathname.startsWith("/api/admin/")) return await admin(req, env, url);
       if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404);
     } catch (e) {
-      return json({ error: "server_error" }, 500);
+      console.error("worker error", url.pathname, e && e.stack || e);
+      // Details only for the (already authenticated) admin area; public callers get a generic error.
+      const detail = url.pathname.startsWith("/api/admin/") && authorized(req, env) ? String(e && e.message || e) : undefined;
+      return json({ error: "server_error", detail }, 500);
     }
     return env.ASSETS.fetch(req);
   },

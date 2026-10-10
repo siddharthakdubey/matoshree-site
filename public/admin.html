@@ -133,16 +133,16 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
 <script>
 var STATUS={new:"New",contacted:"Contacted",survey_scheduled:"Survey scheduled",quoted:"Quoted",won:"Won",lost:"Lost",spam:"Spam"};
 var KEY=null,FILTER="",PHOTO=null,VIEW="leads";
-try{KEY=sessionStorage.getItem("k")}catch(e){}
+try{sessionStorage.removeItem("k")}catch(e){}  /* key lives in memory only: leaving or reloading this page logs out */
 var $=function(id){return document.getElementById(id)};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e}
 
 function api(path,opt){
   opt=opt||{}; opt.headers=Object.assign({"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},opt.headers||{});
-  return fetch(path,opt).then(function(r){ if(r.status===401){logout(true);throw new Error("unauthorized")} return r.json() });
+  return fetch(path,opt).then(function(r){ if(r.status===401){logout(true);throw new Error("unauthorized")} return r.json().then(function(j){ if(r.status>=500) throw new Error(j.detail||j.error||"server error"); return j }) });
 }
 function logout(bad){
-  KEY=null; try{sessionStorage.removeItem("k")}catch(e){}
+  KEY=null; $("key").value="";
   ["v-leads","v-installs","v-export"].forEach(function(i){$(i).hidden=true});
   $("login").hidden=false; $("burger").hidden=true; $("menu").hidden=true; $("title").textContent="Matoshree Admin";
   $("msg").textContent=bad?"Wrong key or session expired.":"";
@@ -182,7 +182,7 @@ function loadLeads(){
     var list=$("list"); list.textContent="";
     if(!d.leads.length) list.appendChild(el("p","sm","No leads here yet."));
     d.leads.forEach(function(l){ list.appendChild(card(l)) });
-  }).catch(function(){});
+  }).catch(function(e){ if(e.message!=="unauthorized"){ var l=$("list"); l.textContent=""; var p=el("p","err","Could not load leads: "+e.message); l.appendChild(p) } });
 }
 function card(l){
   var c=el("div","lead "+l.status);
@@ -228,9 +228,10 @@ function loadInstalls(){
   }).catch(function(){});
 }
 $("saveOrders").onclick=function(){
+  var b=$("saveOrders"), done=function(t){b.textContent=t; setTimeout(function(){b.textContent="Set count"},1800)};
   api("/api/admin/orders",{method:"PUT",body:JSON.stringify({orders:$("orders").value})}).then(function(r){
-    $("saveOrders").textContent=r.ok?"Saved ✓":"Invalid"; if(r.ok)$("ordersShow").textContent=r.orders;
-    setTimeout(function(){$("saveOrders").textContent="Set count"},1200)});
+    if(r.ok){ $("ordersShow").textContent=r.orders; done("Saved ✓") } else done(r.error==="bad_number"?"Enter a number":"Failed");
+  }).catch(function(e){ if(e.message!=="unauthorized") done("Failed: "+e.message) });
 };
 /* shrink the photo in the browser: max 1280px, JPEG ~150 KB, so it fits the free database */
 $("iPhoto").onchange=function(){
@@ -256,7 +257,7 @@ $("addInst").onclick=function(){
     .then(function(r){
       if(r.ok){ m.className="ok"; m.textContent="Added. Count is now "+r.orders+"."; $("iTitle").value=""; $("iCity").value=""; $("iKw").value=""; $("iPhoto").value=""; $("preview").hidden=true; PHOTO=null; loadInstalls(); }
       else m.textContent="Failed: "+(r.error||"unknown");
-    }).catch(function(){m.textContent="Upload failed."}).then(function(){b.disabled=false; b.textContent="Add installation"});
+    }).catch(function(e){m.textContent="Upload failed: "+e.message}).then(function(){b.disabled=false; b.textContent="Add installation"});
 };
 
 /* ---------- export ---------- */
@@ -294,10 +295,12 @@ $("ePdf").onclick=function(){
 };
 
 /* ---------- start ---------- */
-$("go").onclick=function(){KEY=$("key").value.trim(); try{sessionStorage.setItem("k",KEY)}catch(e){} show("leads")};
+$("go").onclick=function(){KEY=$("key").value.trim(); if(!KEY) return; show("leads")};
 $("key").onkeydown=function(e){if(e.key==="Enter")$("go").click()};
 $("refresh").onclick=loadLeads;
-if(KEY) show("leads");
+/* back/forward cache or tab restore: always start logged out */
+window.addEventListener("pageshow",function(e){ if(e.persisted) logout(false) });
+window.addEventListener("pagehide",function(){ KEY=null });
 setInterval(function(){ if(KEY && !document.hidden && VIEW==="leads") loadLeads() },60000);
 </script>
 </body>
