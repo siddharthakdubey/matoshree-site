@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Matoshree Admin</title>
+<style>
+:root{--ink:#173a6e;--sun:#f39a1e;--bg:#f6f3ec;--line:#e4dccb;--muted:#5b6780}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.45;padding-bottom:40px}
+header{background:var(--ink);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;z-index:20}
+header h1{font-size:18px}
+#burger{background:transparent;border:2px solid #fff;color:#fff;border-radius:8px;width:44px;height:40px;font-size:22px;line-height:1;cursor:pointer}
+#burger .dot{display:inline-block;min-width:18px;height:18px;border-radius:9px;background:#d93025;color:#fff;font-size:11px;line-height:18px;vertical-align:top;margin-left:-4px}
+nav#menu{position:fixed;top:60px;right:10px;z-index:30;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);min-width:220px;padding:6px}
+nav#menu button,nav#menu a{display:flex;justify-content:space-between;width:100%;text-align:left;background:none;border:0;padding:12px 14px;border-radius:8px;font:inherit;color:var(--ink);text-decoration:none;cursor:pointer}
+nav#menu button:hover,nav#menu a:hover,nav#menu .on{background:#fff3d6}
+nav#menu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+main{max-width:980px;margin:0 auto;padding:16px}
+button,select,input,textarea{font:inherit}
+.btn{border:0;border-radius:8px;padding:9px 14px;font-weight:600;cursor:pointer;background:var(--sun);color:var(--ink)}
+.btn.alt{background:#fff;border:1px solid var(--line)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.box h2{font-size:18px;margin-bottom:8px}
+#login{max-width:380px;margin:60px auto}
+input[type=text],input[type=number],input[type=password],input[type=date],select{padding:9px;border:1px solid var(--line);border-radius:8px;width:100%;background:#fff;color:var(--ink)}
+#login input{margin:10px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 12px;cursor:pointer;font-size:14px;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lead{background:#fff;border:1px solid var(--line);border-left:6px solid var(--sun);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.lead.new{border-left-color:#d93025}.lead.won{border-left-color:#1a9f53}.lead.lost,.lead.spam{border-left-color:#999;opacity:.75}
+.lead h3{font-size:17px}
+.meta{color:var(--muted);font-size:14px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+.acts a{text-decoration:none;border-radius:8px;padding:7px 12px;font-weight:600;font-size:14px;color:#fff}
+.call{background:var(--ink)}.wa{background:#1a9f53}
+.edit{display:grid;grid-template-columns:170px 1fr auto;gap:8px}
+@media(max-width:560px){.edit{grid-template-columns:1fr}}
+.inst{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;align-items:center}
+.inst img{width:96px;height:72px;object-fit:cover;border-radius:8px;background:#eee;flex:none}
+.inst .grow{flex:1;min-width:0}
+.inst.off{opacity:.6}
+#preview{max-width:240px;max-height:180px;border-radius:8px;margin-top:8px;display:block}
+.big{font-size:34px;font-weight:700}
+#msg,.err{color:#b3261e;font-weight:600;min-height:1.4em}
+.ok{color:#1a7f45;font-weight:600}
+.sm{font-size:13px;color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">Matoshree Admin</h1>
+  <button id="burger" aria-label="Menu" aria-expanded="false" hidden>☰<span class="dot" id="newdot" hidden></span></button>
+</header>
+<nav id="menu" hidden>
+  <button data-view="leads">Leads <span class="sm" id="mLeads"></span></button>
+  <button data-view="installs">Installations</button>
+  <button data-view="export">Export</button>
+  <hr>
+  <a href="/" target="_blank" rel="noopener">View website ↗</a>
+  <button id="out">Log out</button>
+</nav>
+
+<main>
+  <div class="box" id="login">
+    <b>Admin sign-in</b>
+    <input id="key" type="password" placeholder="Admin key" autocomplete="current-password">
+    <button class="btn" id="go">Sign in</button>
+    <p id="msg"></p>
+  </div>
+
+  <!-- LEADS -->
+  <section id="v-leads" hidden>
+    <div class="box">
+      <div class="row" style="justify-content:space-between">
+        <div class="chips" id="chips"></div>
+        <button class="btn alt" id="refresh">Refresh</button>
+      </div>
+    </div>
+    <div id="list"></div>
+  </section>
+
+  <!-- INSTALLATIONS -->
+  <section id="v-installs" hidden>
+    <div class="box">
+      <h2>Completed installations on website</h2>
+      <div class="row" style="justify-content:space-between">
+        <div><div class="big" id="ordersShow">–</div><div class="sm">This number is shown on the home page counter.</div></div>
+        <div class="row"><input id="orders" type="number" min="0" style="width:110px"><button class="btn" id="saveOrders">Set count</button></div>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Add a new installation</h2>
+      <div class="grid">
+        <div><label for="iTitle">Title</label><input id="iTitle" type="text" maxlength="100" placeholder="e.g. 3 kW rooftop, Jaunpur"></div>
+        <div><label for="iCity">City</label><input id="iCity" type="text" maxlength="60" placeholder="Jaunpur"></div>
+        <div><label for="iKw">Capacity (kW)</label><input id="iKw" type="number" min="0" step="0.5" placeholder="3"></div>
+      </div>
+      <div style="margin-top:10px"><label for="iPhoto">Photo</label><input id="iPhoto" type="file" accept="image/*"><img id="preview" alt="" hidden></div>
+      <label class="row" style="margin-top:12px;font-weight:600"><input type="checkbox" id="iInc" checked style="width:auto"> Add 1 to the completed installations count</label>
+      <div class="row" style="margin-top:12px"><button class="btn" id="addInst">Add installation</button><span id="iMsg" class="err"></span></div>
+    </div>
+    <div id="instList"></div>
+  </section>
+
+  <!-- EXPORT -->
+  <section id="v-export" hidden>
+    <div class="box">
+      <h2>Export leads for the follow-up team</h2>
+      <div class="grid">
+        <div><label for="eStatus">Status</label>
+          <select id="eStatus"><option value="">All</option><option value="new" selected>New</option><option value="contacted">Contacted</option><option value="survey_scheduled">Survey scheduled</option><option value="quoted">Quoted</option><option value="won">Won</option><option value="lost">Lost</option></select></div>
+        <div><label for="eFrom">From date</label><input id="eFrom" type="date"></div>
+        <div><label for="eTo">To date</label><input id="eTo" type="date"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="eCsv">Download Excel (CSV)</button>
+        <button class="btn alt" id="ePdf">Print / Save as PDF</button>
+        <span id="eMsg" class="sm"></span>
+      </div>
+      <p class="sm" style="margin-top:10px">The CSV opens directly in Excel or Google Sheets. For PDF, choose "Save as PDF" as the printer in the print window.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+var STATUS={new:"New",contacted:"Contacted",survey_scheduled:"Survey scheduled",quoted:"Quoted",won:"Won",lost:"Lost",spam:"Spam"};
+var KEY=null,FILTER="",PHOTO=null,VIEW="leads";
+try{KEY=sessionStorage.getItem("k")}catch(e){}
+var $=function(id){return document.getElementById(id)};
+function el(tag,cls,text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e}
+
+function api(path,opt){
+  opt=opt||{}; opt.headers=Object.assign({"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},opt.headers||{});
+  return fetch(path,opt).then(function(r){ if(r.status===401){logout(true);throw new Error("unauthorized")} return r.json() });
+}
+function logout(bad){
+  KEY=null; try{sessionStorage.removeItem("k")}catch(e){}
+  ["v-leads","v-installs","v-export"].forEach(function(i){$(i).hidden=true});
+  $("login").hidden=false; $("burger").hidden=true; $("menu").hidden=true; $("title").textContent="Matoshree Admin";
+  $("msg").textContent=bad?"Wrong key or session expired.":"";
+}
+function ist(s,full){
+  var d=new Date(s.replace(" ","T")+"Z");
+  return d.toLocaleString("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"short",year:full?"numeric":undefined,hour:"2-digit",minute:"2-digit"});
+}
+
+/* ---------- navigation ---------- */
+function show(v){
+  VIEW=v; $("login").hidden=true; $("burger").hidden=false; $("menu").hidden=true; $("burger").setAttribute("aria-expanded","false");
+  ["leads","installs","export"].forEach(function(n){ $("v-"+n).hidden=(n!==v) });
+  document.querySelectorAll("#menu [data-view]").forEach(function(b){b.classList.toggle("on",b.dataset.view===v)});
+  $("title").textContent={leads:"Leads",installs:"Installations",export:"Export"}[v];
+  if(v==="leads") loadLeads(); if(v==="installs") loadInstalls();
+  window.scrollTo(0,0);
+}
+$("burger").onclick=function(e){e.stopPropagation(); var h=!$("menu").hidden; $("menu").hidden=h; $("burger").setAttribute("aria-expanded",String(!h))};
+document.addEventListener("click",function(e){ if(!$("menu").contains(e.target)&&e.target!==$("burger")){$("menu").hidden=true} });
+document.querySelectorAll("#menu [data-view]").forEach(function(b){b.onclick=function(){show(b.dataset.view)}});
+$("out").onclick=function(){logout(false)};
+
+/* ---------- leads ---------- */
+function badge(counts){
+  var n=0; counts.forEach(function(c){ if(c.status==="new") n=c.c });
+  $("newdot").hidden=!n; $("newdot").textContent=n; $("mLeads").textContent=n?n+" new":"";
+}
+function loadLeads(){
+  api("/api/admin/leads"+(FILTER?"?status="+FILTER:"")).then(function(d){
+    badge(d.counts);
+    var counts={},total=0; d.counts.forEach(function(c){counts[c.status]=c.c; total+=c.c});
+    var chips=$("chips"); chips.textContent="";
+    [["","All ("+total+")"]].concat(Object.keys(STATUS).map(function(k){return [k,STATUS[k]+" ("+(counts[k]||0)+")"]})).forEach(function(p){
+      var b=el("button","chip",p[1]); b.setAttribute("aria-pressed",FILTER===p[0]); b.onclick=function(){FILTER=p[0];loadLeads()}; chips.appendChild(b);
+    });
+    var list=$("list"); list.textContent="";
+    if(!d.leads.length) list.appendChild(el("p","sm","No leads here yet."));
+    d.leads.forEach(function(l){ list.appendChild(card(l)) });
+  }).catch(function(){});
+}
+function card(l){
+  var c=el("div","lead "+l.status);
+  c.appendChild(el("h3","",l.name));
+  c.appendChild(el("div","meta",ist(l.created_at)+"  ·  "+(l.city||"-")+"  ·  Bill: "+(l.bill!=null?"₹"+l.bill:"-")+"  ·  "+l.phone));
+  var acts=el("div","acts");
+  var call=el("a","call","Call"); call.href="tel:+91"+l.phone;
+  var wa=el("a","wa","WhatsApp"); wa.target="_blank"; wa.rel="noopener";
+  wa.href="https://wa.me/91"+l.phone+"?text="+encodeURIComponent("नमस्ते "+l.name+" जी, Matoshree Enterprises से बात कर रहे हैं। सोलर के बारे में आपने जानकारी मांगी थी।");
+  acts.appendChild(call); acts.appendChild(wa); c.appendChild(acts);
+  var ed=el("div","edit"), sel=el("select"), note=el("input"), save=el("button","btn alt","Save");
+  note.type="text";
+  Object.keys(STATUS).forEach(function(k){var o=el("option","",STATUS[k]); o.value=k; if(k===l.status)o.selected=true; sel.appendChild(o)});
+  note.placeholder="Note (e.g. survey on Sunday)"; note.value=l.note||""; note.maxLength=500;
+  save.onclick=function(){
+    save.textContent="Saving…";
+    api("/api/admin/leads/"+l.id,{method:"PATCH",body:JSON.stringify({status:sel.value,note:note.value})})
+      .then(function(){save.textContent="Saved ✓"; l.status=sel.value; c.className="lead "+l.status; setTimeout(function(){save.textContent="Save"},1200)})
+      .catch(function(){save.textContent="Failed"});
+  };
+  ed.appendChild(sel); ed.appendChild(note); ed.appendChild(save); c.appendChild(ed);
+  return c;
+}
+
+/* ---------- installations ---------- */
+function loadInstalls(){
+  api("/api/admin/installations").then(function(d){
+    $("ordersShow").textContent=d.orders; $("orders").value=d.orders;
+    var list=$("instList"); list.textContent="";
+    if(!d.installations.length) list.appendChild(el("p","sm","No installations added yet."));
+    d.installations.forEach(function(i){
+      var row=el("div","inst"+(i.visible?"":" off"));
+      var img=el("img"); img.alt=""; if(i.photo_id) img.src="/api/photo/"+i.photo_id; row.appendChild(img);
+      var g=el("div","grow"); g.appendChild(el("b","",i.title));
+      g.appendChild(el("div","meta",[i.city,i.kw?i.kw+" kW":"",ist(i.created_at)].filter(Boolean).join("  ·  ")+(i.visible?"":"  ·  hidden")));
+      row.appendChild(g);
+      var col=el("div"); col.style.cssText="display:flex;flex-direction:column;gap:6px";
+      var tg=el("button","btn alt",i.visible?"Hide":"Show"); tg.onclick=function(){api("/api/admin/installations/"+i.id,{method:"PATCH",body:JSON.stringify({visible:!i.visible})}).then(loadInstalls)};
+      var del=el("button","btn alt","Delete"); del.onclick=function(){ if(confirm("Delete this installation and its photo? The count will not change.")) api("/api/admin/installations/"+i.id,{method:"DELETE"}).then(loadInstalls) };
+      col.appendChild(tg); col.appendChild(del); row.appendChild(col);
+      list.appendChild(row);
+    });
+  }).catch(function(){});
+}
+$("saveOrders").onclick=function(){
+  api("/api/admin/orders",{method:"PUT",body:JSON.stringify({orders:$("orders").value})}).then(function(r){
+    $("saveOrders").textContent=r.ok?"Saved ✓":"Invalid"; if(r.ok)$("ordersShow").textContent=r.orders;
+    setTimeout(function(){$("saveOrders").textContent="Set count"},1200)});
+};
+/* shrink the photo in the browser: max 1280px, JPEG ~150 KB, so it fits the free database */
+$("iPhoto").onchange=function(){
+  var f=this.files[0]; PHOTO=null; $("preview").hidden=true; if(!f) return;
+  var url=URL.createObjectURL(f), img=new Image();
+  img.onload=function(){
+    var s=Math.min(1,1280/Math.max(img.width,img.height)), c=document.createElement("canvas");
+    c.width=Math.round(img.width*s); c.height=Math.round(img.height*s);
+    var x=c.getContext("2d"); x.fillStyle="#fff"; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height);
+    var q=0.82, data=c.toDataURL("image/jpeg",q);
+    while(data.length>480000&&q>0.4){q-=0.1; data=c.toDataURL("image/jpeg",q)}
+    PHOTO=data; $("preview").src=data; $("preview").hidden=false; URL.revokeObjectURL(url);
+  };
+  img.onerror=function(){$("iMsg").textContent="Could not read that image."};
+  img.src=url;
+};
+$("addInst").onclick=function(){
+  var title=$("iTitle").value.trim(), m=$("iMsg"); m.className="err"; m.textContent="";
+  if(!title){m.textContent="Please enter a title."; return}
+  if(!PHOTO){m.textContent="Please choose a photo."; return}
+  var b=$("addInst"); b.disabled=true; b.textContent="Uploading…";
+  api("/api/admin/installations",{method:"POST",body:JSON.stringify({title:title,city:$("iCity").value,kw:$("iKw").value,photo:PHOTO,increment:$("iInc").checked})})
+    .then(function(r){
+      if(r.ok){ m.className="ok"; m.textContent="Added. Count is now "+r.orders+"."; $("iTitle").value=""; $("iCity").value=""; $("iKw").value=""; $("iPhoto").value=""; $("preview").hidden=true; PHOTO=null; loadInstalls(); }
+      else m.textContent="Failed: "+(r.error||"unknown");
+    }).catch(function(){m.textContent="Upload failed."}).then(function(){b.disabled=false; b.textContent="Add installation"});
+};
+
+/* ---------- export ---------- */
+function fetchExport(){
+  var p=[]; if($("eStatus").value)p.push("status="+$("eStatus").value); if($("eFrom").value)p.push("from="+$("eFrom").value); if($("eTo").value)p.push("to="+$("eTo").value);
+  return api("/api/admin/leads"+(p.length?"?"+p.join("&"):"")).then(function(d){return d.leads});
+}
+$("eCsv").onclick=function(){
+  fetchExport().then(function(rows){
+    $("eMsg").textContent=rows.length+(rows.length===1?" lead":" leads")+" exported";
+    var q=function(v){return '"'+String(v==null?"":v).replace(/"/g,'""')+'"'};
+    var out=[["Date (IST)","Name","Phone","City","Monthly bill","Status","Note"]].concat(rows.map(function(l){return [ist(l.created_at,true),l.name,l.phone,l.city,l.bill,STATUS[l.status],l.note]}));
+    var blob=new Blob(["﻿"+out.map(function(r){return r.map(q).join(",")}).join("\r\n")],{type:"text/csv;charset=utf-8"});
+    var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="matoshree-leads-"+new Date().toISOString().slice(0,10)+".csv"; a.click();
+  });
+};
+$("ePdf").onclick=function(){
+  fetchExport().then(function(rows){
+    $("eMsg").textContent=rows.length+(rows.length===1?" lead":" leads");
+    var w=window.open("","_blank"); if(!w){$("eMsg").textContent="Please allow pop-ups to print."; return}
+    var d=w.document; d.title="Matoshree leads";
+    var st=d.createElement("style"); st.textContent="body{font-family:Arial,sans-serif;font-size:12px;margin:18px}h1{font-size:18px;margin-bottom:4px}table{border-collapse:collapse;width:100%;margin-top:10px}th,td{border:1px solid #999;padding:5px 6px;text-align:left;vertical-align:top}th{background:#eee}tr{page-break-inside:avoid}";
+    d.head.appendChild(st);
+    var h=d.createElement("h1"); h.textContent="Matoshree Enterprises: lead follow-up list"; d.body.appendChild(h);
+    var sub=d.createElement("div"); sub.textContent="Generated "+new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})+"  ·  "+rows.length+" leads"; d.body.appendChild(sub);
+    var t=d.createElement("table"), hr=d.createElement("tr");
+    ["#","Date","Name","Phone","City","Bill","Status","Note"].forEach(function(x){var th=d.createElement("th"); th.textContent=x; hr.appendChild(th)}); t.appendChild(hr);
+    rows.forEach(function(l,i){
+      var tr=d.createElement("tr");
+      [i+1,ist(l.created_at),l.name,l.phone,l.city||"",l.bill!=null?"₹"+l.bill:"",STATUS[l.status],l.note||""].forEach(function(x){var td=d.createElement("td"); td.textContent=x; tr.appendChild(td)});
+      t.appendChild(tr);
+    });
+    d.body.appendChild(t); w.focus(); setTimeout(function(){w.print()},300);
+  });
+};
+
+/* ---------- start ---------- */
+$("go").onclick=function(){KEY=$("key").value.trim(); try{sessionStorage.setItem("k",KEY)}catch(e){} show("leads")};
+$("key").onkeydown=function(e){if(e.key==="Enter")$("go").click()};
+$("refresh").onclick=loadLeads;
+if(KEY) show("leads");
+setInterval(function(){ if(KEY && !document.hidden && VIEW==="leads") loadLeads() },60000);
+</script>
+</body>
+</html>

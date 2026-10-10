@@ -116,30 +116,27 @@ footer h3{color:#fff;font-size:17px;margin-bottom:6px}
 .count b{font-size:clamp(44px,9vw,60px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
 .count span{font-weight:700;font-size:19px;line-height:1.3}
 .hero .logo img{mix-blend-mode:multiply}
+.brand .bname{display:none}
 @media(max-width:700px){
- header .wrap{padding-top:8px;padding-bottom:8px}
- .brand img{height:44px}
- .hero{padding:14px 0 22px}
- .hero .wrap{grid-template-columns:1fr;gap:10px}
+ .hero{padding:22px 0 30px}
+ .hero .wrap{grid-template-columns:1fr;gap:18px}
  .hero .logo{order:-1}
- .hero .logo img{max-width:200px}
- .hero h1{font-size:27px}
+ .hero .logo img{max-width:300px}
  .hero .btns{display:none}
- .hero p{margin:8px 0 0;font-size:17px;line-height:1.5}
- .count{margin-top:12px}
- .count b{font-size:44px}
- .count span{font-size:17px}
+ .hero p{margin:12px 0 4px}
+ .brand img{display:none}
+ .brand .bname{display:block;font-size:17px;line-height:1.2}
 }
 
-header{position:sticky;top:0;z-index:50}
+header{position:relative}
 .hright{display:flex;align-items:center;gap:8px}
 .mbtn{font:inherit;font-size:22px;line-height:1;width:44px;height:40px;border:2px solid var(--sun);background:#fff;color:var(--ink);border-radius:8px;cursor:pointer}
-.pmenu{position:absolute;right:12px;top:100%;z-index:40;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.18);min-width:230px;max-height:calc(100vh - 150px);overflow-y:auto;padding:6px;margin-top:6px}
+.pmenu{position:absolute;right:12px;top:100%;z-index:40;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.18);min-width:230px;padding:6px;margin-top:6px}
 .pmenu a{display:block;padding:12px 14px;border-radius:8px;text-decoration:none;font-weight:600;color:var(--ink)}
 .pmenu a:hover{background:#fff3d6}
-.pmenu .adm{border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:4px}
+.pmenu .adm{font-weight:400;font-size:14px;color:var(--muted);border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:4px}
 body[data-lang=hi] .pmenu .en,body[data-lang=en] .pmenu .hi{display:none}
-section{scroll-margin-top:72px}
+section{scroll-margin-top:8px}
 .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .gallery figure{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#e9dfc9}
@@ -153,7 +150,7 @@ section{scroll-margin-top:72px}
 
 <a class="gov" href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener"><div class="wrap"><span class="hi">📢 <b>पीएम सूर्य घर: मुफ़्त बिजली योजना</b><span class="more">। 1 करोड़ घरों को हर महीने 300 यूनिट तक मुफ़्त बिजली का लक्ष्य।</span> <u>सरकारी पोर्टल देखें</u></span><span class="en">📢 <b>PM Surya Ghar: Muft Bijli Yojana</b><span class="more">. Aim: up to 300 units of free electricity a month for 1 crore households.</span> <u>Visit official portal</u></span></div></a>
 <header><div class="wrap">
-  <a class="brand" href="#" aria-label="Matoshree Enterprises"><img src="logo.png" width="300" height="207" alt="Matoshree: Powering Your Savings with Solar"></a>
+  <a class="brand" href="#" aria-label="Matoshree Enterprises"><img src="logo.png" width="300" height="207" alt="Matoshree: Powering Your Savings with Solar"><span class="bname">Matoshree Enterprises<small>Your Solar Solution</small></span></a>
   <div class="hright">
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-set="hi" aria-pressed="true">हिंदी</button>
@@ -183,7 +180,7 @@ section{scroll-margin-top:72px}
     </div>
     <div class="count"><b id="orders" aria-label="92">92</b><span class="hi">ऑर्डर सफलतापूर्वक<br>पूरे हुए</span><span class="en">orders successfully<br>completed</span></div>
   </div>
-  <div class="logo"><img src="logo-large.png" width="560" height="387" alt="Matoshree: Powering Your Savings with Solar"></div>
+  <div class="logo"><img src="logo-large.jpg" width="560" height="387" alt="Matoshree: Powering Your Savings with Solar"></div>
 </div></div>
 
 <section id="subsidy"><div class="wrap">
@@ -285,23 +282,8 @@ section{scroll-margin-top:72px}
   <a class="q" href="#quote"><span class="hi">कोटेशन</span><span class="en">Quote</span></a>
 </nav>
 
-<script>
-/* Menu: kept separate so nothing else on the page can break it */
-(function(){
-  var btn=document.getElementById("mbtn"), menu=document.getElementById("pmenu");
-  function close(){menu.hidden=true; btn.setAttribute("aria-expanded","false")}
-  btn.onclick=function(e){e.stopPropagation(); var open=menu.hidden; menu.hidden=!open; btn.setAttribute("aria-expanded",String(open))};
-  menu.addEventListener("click",function(e){ if(e.target.closest("a")) close() });
-  document.addEventListener("click",function(e){ if(!menu.contains(e.target)) close() });
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape") close() });
-})();
-</script>
 <script src="config.js"></script>
 <script>
-if(typeof CFG==="undefined"){
-  console.error("config.js did not load or has a syntax error. Using safe defaults; phone and WhatsApp links will not work until it is fixed.");
-  window.CFG={phone:"",phoneShow:"",email:"",fixedCost:15000,costPerKw:55000,orders:92,maxKw:10,tariff:7,unitsPerKwMonth:120};
-}
 
 var body = document.body, lastCalc = "";
 function setLang(l){
@@ -381,7 +363,14 @@ document.getElementById("f").onsubmit=function(e){
   }).catch(function(){clearTimeout(timer); run(CFG.orders)});
 })();
 
-
+(function(){
+  var btn=document.getElementById("mbtn"), menu=document.getElementById("pmenu");
+  function close(){menu.hidden=true; btn.setAttribute("aria-expanded","false")}
+  btn.onclick=function(e){e.stopPropagation(); var open=menu.hidden; menu.hidden=!open; btn.setAttribute("aria-expanded",String(open))};
+  menu.addEventListener("click",function(e){ if(e.target.closest("a")) close() });
+  document.addEventListener("click",function(e){ if(!menu.contains(e.target)) close() });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") close() });
+})();
 
 /* Our work: photos added from the admin page */
 fetch("/api/installations").then(function(r){return r.json()}).then(function(d){
