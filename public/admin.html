@@ -99,7 +99,7 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
     <div class="box">
       <h2>Installations underway (live)</h2>
       <div class="row" style="justify-content:space-between">
-        <div><div class="big" id="ongoingShow">–</div><div class="sm">Shown beside the completed count on the home page. Set 0 to hide it.</div></div>
+        <div><div class="big" id="ongoingShow">–</div><div class="sm">Shown (blinking) beside the completed count on the home page. Until you set it, the site shows 5. Set 0 to hide the box.</div></div>
         <div class="row"><input id="ongoing" type="number" min="0" style="width:110px"><button class="btn" id="saveOngoing">Set count</button></div>
       </div>
     </div>
@@ -107,7 +107,7 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
       <h2>Add a new installation</h2>
       <div class="grid">
         <div><label for="iTitle">Title</label><input id="iTitle" type="text" maxlength="100" placeholder="e.g. 3 kW rooftop, Jaunpur"></div>
-        <div><label for="iCity">City</label><select id="iCity"><option>Varanasi</option><option>Bhadohi</option><option>Chitrakoot</option><option>Jaunpur</option><option>Prayagraj</option></select></div>
+        <div><label for="iCitySel">City</label><select id="iCitySel"><option>Varanasi</option><option>Bhadohi</option><option>Chitrakoot</option><option>Jaunpur</option><option>Prayagraj</option><option>Gopiganj</option><option value="__other">Other (type a new city)…</option></select><input id="iCity" type="text" maxlength="60" placeholder="Type city name" style="margin-top:6px" hidden></div>
         <div><label for="iKw">Capacity (kW)</label><input id="iKw" type="number" min="0" step="0.5" placeholder="3"></div>
       </div>
       <div style="margin-top:10px"><label for="iPhoto">Photo</label><input id="iPhoto" type="file" accept="image/*"><img id="preview" alt="" hidden></div>
@@ -217,7 +217,7 @@ function card(l){
 /* ---------- installations ---------- */
 function loadInstalls(){
   api("/api/admin/installations").then(function(d){
-    $("ordersShow").textContent=d.orders; $("orders").value=d.orders; $("ongoingShow").textContent=d.ongoing; $("ongoing").value=d.ongoing;
+    $("ordersShow").textContent=d.orders; $("orders").value=d.orders; $("ongoingShow").textContent=(d.ongoing==null?"5 (default)":d.ongoing); $("ongoing").value=(d.ongoing==null?5:d.ongoing);
     var list=$("instList"); list.textContent="";
     if(!d.installations.length) list.appendChild(el("p","sm","No installations added yet."));
     d.installations.forEach(function(i){
@@ -261,12 +261,15 @@ $("iPhoto").onchange=function(){
   img.onerror=function(){$("iMsg").textContent="Could not read that image."};
   img.src=url;
 };
+$("iCitySel").onchange=function(){ $("iCity").hidden=(this.value!=="__other"); if(!$("iCity").hidden) $("iCity").focus() };
 $("addInst").onclick=function(){
   var title=$("iTitle").value.trim(), m=$("iMsg"); m.className="err"; m.textContent="";
   if(!title){m.textContent="Please enter a title."; return}
+  var city=$("iCitySel").value==="__other"?$("iCity").value.trim():$("iCitySel").value;
+  if(!city){m.textContent="Please type the city name."; return}
   if(!PHOTO){m.textContent="Please choose a photo."; return}
   var b=$("addInst"); b.disabled=true; b.textContent="Uploading…";
-  api("/api/admin/installations",{method:"POST",body:JSON.stringify({title:title,city:$("iCity").value,kw:$("iKw").value,photo:PHOTO,increment:$("iInc").checked})})
+  api("/api/admin/installations",{method:"POST",body:JSON.stringify({title:title,city:city,kw:$("iKw").value,photo:PHOTO,increment:$("iInc").checked})})
     .then(function(r){
       if(r.ok){ m.className="ok"; m.textContent="Added. Count is now "+r.orders+"."; $("iTitle").value=""; $("iKw").value=""; $("iPhoto").value=""; $("preview").hidden=true; PHOTO=null; loadInstalls(); }
       else m.textContent="Failed: "+(r.error||"unknown");

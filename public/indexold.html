@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matoshree Enterprises | Powering Your Savings with Solar</title>
+<meta name="description" content="अपनी छत पर सोलर लगवाएं, बिजली बिल घटाएं। सरकारी सब्सिडी का पूरा काम हम करते हैं। वाराणसी, भदोही, चित्रकूट, जौनपुर, प्रयागराज।">
+<meta property="og:title" content="Matoshree Enterprises: Your Solar Solution">
+<meta property="og:description" content="सब्सिडी के साथ सोलर लगवाएं। फ्री सर्वे और कोटेशन।">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#173a6e;--sun:#f39a1e;--sun-d:#c97f00;--paper:#fffaf2;--card:#fff;--line:#eadfc8;--wa:#1a9f53;--muted:#55627a}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Hind,"Noto Sans Devanagari",system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.6;padding-bottom:0}
+body[data-lang=hi] .en,body[data-lang=en] .hi{display:none}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px}
+section{padding:44px 0}
+h1,h2,h3{line-height:1.25}
+h2{font-size:28px;margin-bottom:18px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+.brand{font-weight:700;font-size:19px;line-height:1.2}
+.brand small{display:block;font-weight:400;font-size:13px;color:#55627a}
+.lang{display:flex;border:2px solid var(--sun);border-radius:8px;overflow:hidden}
+.lang button{font:inherit;font-size:15px;font-weight:600;border:0;padding:6px 14px;background:transparent;color:var(--ink);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--sun);color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;text-decoration:none;font:inherit;font-weight:700;font-size:18px;padding:13px 22px;border-radius:10px;border:0;cursor:pointer;text-align:center}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.line{background:transparent;color:#fff;border:2px solid #fff}
+.sub{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.sub div{background:var(--card);border-left:6px solid var(--sun);padding:16px 18px;border-radius:0 10px 10px 0}
+.sub strong{display:block;font-size:22px}
+.note{font-size:15px;color:var(--muted);margin-top:12px}
+.calc{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:22px}
+label{display:block;font-weight:600;margin:12px 0 6px}
+input,select{width:100%;font:inherit;font-size:19px;padding:12px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.out{margin-top:18px;display:none;border-top:2px dashed var(--line);padding-top:16px}
+.out.on{display:block}
+.out dl{display:grid;grid-template-columns:1fr auto;gap:6px 14px}
+.out dt{color:var(--muted)}
+.out dd{font-weight:700;text-align:right}
+.out dt.pay,.out dd.pay{color:var(--ink);font-size:21px}
+.steps{list-style:none;padding:0;counter-reset:s;display:grid;gap:12px}
+.steps li{counter-increment:s;background:var(--card);border-radius:10px;padding:14px 16px 14px 64px;position:relative;border:1px solid var(--line)}
+.steps li:before{content:counter(s);position:absolute;left:14px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--sun);font-weight:700;display:grid;place-items:center}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pills span{background:var(--ink);color:#fff;padding:8px 18px;border-radius:99px;font-weight:600}
+.photos{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.photos div{aspect-ratio:4/3;background:#e9dfc9;border-radius:10px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:15px;padding:10px}
+.lead{background:var(--ink);color:#fff}
+.lead label{color:#fff}
+.lead input,.lead select{border-color:#fff}
+.lead .btn{width:100%;margin-top:18px}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+summary{font-weight:700;cursor:pointer}
+details p{margin-top:8px;color:var(--muted)}
+footer{background:#0f2a52;color:#cfd7e6;padding:34px 0 28px;font-size:16px}
+footer a{color:#fff;font-weight:600}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.gov{display:block;background:var(--sun);color:var(--ink);text-decoration:none;font-size:15px;font-weight:600;text-align:center;padding:8px 0;line-height:1.4}
+.gov .wrap{display:block}.gov u{white-space:nowrap}
+.brand img{height:54px;width:auto;display:block}
+.calc .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.calc .row{grid-template-columns:1fr}}
+.pipe{list-style:none;padding:0;display:grid;gap:34px;counter-reset:s}
+.pipe li{counter-increment:s;position:relative;background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:16px}
+.pipe li:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--sun);color:var(--ink);font-weight:700;margin-bottom:8px}
+.pipe h3{font-size:19px;margin-bottom:6px}
+.pipe p{font-size:16px;color:var(--muted);line-height:1.5}
+.pipe li:not(:last-child):after{content:"";position:absolute;left:50%;bottom:-34px;width:4px;height:34px;margin-left:-2px;background:var(--sun)}
+@media(min-width:900px){.pipe{grid-template-columns:repeat(5,1fr);gap:30px}.pipe li:not(:last-child):after{left:100%;bottom:auto;top:50%;width:30px;height:4px;margin:-2px 0 0}}
+.fgrid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+footer h3{color:#fff;font-size:17px;margin-bottom:6px}
+.flogo{background:#fff;border-radius:10px;padding:8px 12px;display:inline-block;margin-bottom:10px}
+.flogo img{height:58px;width:auto;display:block}
+.soon{border:1px dashed #9fb3d6;border-radius:8px;padding:6px 10px;display:inline-block}
+.legal{border-top:1px solid #2c4876;margin-top:22px;padding-top:14px;font-size:14px;color:#9fb3d6}
+
+.stat{background:var(--sun);color:var(--ink);text-align:center;padding:22px 0}
+.stat b{display:block;font-size:clamp(48px,12vw,72px);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:20px;font-weight:700}
+@media(max-width:560px){
+ .gov .more{display:none}
+ .out .x{display:none}
+ .fgrid>div:first-child{display:none}
+ .pipe p{font-size:15px}
+ section{padding:34px 0}
+}
+
+header{position:sticky;top:0;z-index:50}
+.hright{display:flex;align-items:center;gap:8px}
+.mbtn{font:inherit;font-size:22px;line-height:1;width:44px;height:40px;border:2px solid var(--sun);background:#fff;color:var(--ink);border-radius:8px;cursor:pointer}
+.pmenu{position:absolute;right:12px;top:100%;z-index:40;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.18);min-width:230px;max-height:calc(100vh - 150px);overflow-y:auto;padding:6px;margin-top:6px}
+.pmenu a{display:block;padding:12px 14px;border-radius:8px;text-decoration:none;font-weight:600;color:var(--ink)}
+.pmenu a:hover{background:#fff3d6}
+.pmenu .adm{border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:4px}
+body[data-lang=hi] .pmenu .en,body[data-lang=en] .pmenu .hi{display:none}
+section{scroll-margin-top:72px}
+
+/* ---- hero: logo + tagline on a solar-panel background ---- */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(180deg,#f7fbff 0%,#dcebfa 58%,#c3d8f1 100%);padding:26px 0 30px;border-bottom:8px solid var(--sun);text-align:center}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% -10%,rgba(255,200,90,.55),rgba(255,200,90,0) 55%)}
+.hero:after{content:"";position:absolute;z-index:-1;left:-35%;right:-35%;bottom:-22%;height:100%;
+ background:
+  linear-gradient(115deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 40%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.75) 0 2px,transparent 2px 46px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.75) 0 2px,transparent 2px 46px),
+  linear-gradient(160deg,#1d4f95,#173a6e 70%);
+ opacity:.85;transform:perspective(520px) rotateX(52deg);transform-origin:50% 100%;
+ -webkit-mask-image:linear-gradient(to top,#000 25%,transparent 95%);mask-image:linear-gradient(to top,#000 40%,transparent 100%)}
+.hero .wrap{display:block}
+.hero .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero .hlogo{display:block;margin:0 auto;width:100%;max-width:272px;height:auto;mix-blend-mode:multiply}
+.hero .tag{margin:6px 0 0;font-size:clamp(18px,4.6vw,26px);font-weight:700;letter-spacing:.2px;color:#e8661afe;line-height:1.3}
+.hstats{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.hs{flex:1 1 0;max-width:300px;background:rgba(255,255,255,.88);border:1px solid rgba(23,58,110,.12);border-left:6px solid var(--sun);border-radius:12px;padding:10px 12px;text-align:left;box-shadow:0 6px 18px rgba(23,58,110,.12);display:flex;align-items:center;gap:10px}
+.hs b{font-size:clamp(36px,9vw,54px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.hs span{font-weight:700;font-size:16px;line-height:1.3;color:var(--ink)}
+.hs.live{border-left-color:#1fb457}
+.hs.live b{animation:blink 1.1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hs .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#1fb457;margin-right:6px;box-shadow:0 0 0 0 rgba(31,180,87,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(31,180,87,0)}100%{box-shadow:0 0 0 0 rgba(31,180,87,0)}}
+@media(max-width:560px){.hero{padding:14px 0 26px}.hero .hlogo{max-width:212px}.hstats{margin-top:20px;gap:8px}.hs{padding:8px 9px;gap:7px;border-left-width:5px}.hs b{font-size:26px}.hs span{font-size:11.5px}}
+@media(prefers-reduced-motion:reduce){.hs .dot,.hs.live b{animation:none}}
+
+/* ---- top-left MNRE badge + GSTIN ---- */
+.hero .wrap{position:relative}
+.badge{position:absolute;left:14px;top:0;display:flex;flex-direction:column;align-items:center;width:max-content;text-align:center}
+.badge img{display:block;width:71px;height:71px;object-fit:contain;mix-blend-mode:multiply}
+.badge .g{margin-top:2px;font-size:10.5px;line-height:1.25;font-weight:700;color:var(--ink);letter-spacing:.2px;text-shadow:0 0 4px #fff,0 0 4px #fff}
+.badge .g span{display:block;font-size:10px;letter-spacing:.4px;white-space:nowrap}
+@media(max-width:560px){.badge{left:8px}.badge img{width:54px;height:54px}.badge .g{font-size:9px}.badge .g span{font-size:8.5px;white-space:nowrap}}
+.bphoto{display:block;width:100%;max-width:260px;height:auto;border-radius:12px;margin-top:12px;border:2px solid #2c4876}
+
+/* ---- where we work: city tabs + endless photo slider ---- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.tabs button{font:inherit;font-weight:700;font-size:17px;border:2px solid var(--ink);background:#fff;color:var(--ink);padding:8px 18px;border-radius:99px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.carwrap{position:relative}
+.car{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab;outline-offset:4px}
+.car::-webkit-scrollbar{display:none}
+.car.drag{scroll-snap-type:none;cursor:grabbing;user-select:none}
+.slide{flex:0 0 78%;max-width:340px;scroll-snap-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.slide img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9dfc9;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.slide figcaption{padding:10px 12px;font-weight:600;font-size:16px;line-height:1.35}
+.slide figcaption small{display:block;font-weight:400;color:var(--muted);font-size:14px}
+.cbtn{position:absolute;top:calc(50% - 22px);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:var(--ink);font-size:28px;line-height:1;box-shadow:0 3px 10px rgba(0,0,0,.25);cursor:pointer;z-index:2}
+.cbtn.prev{left:6px}.cbtn.next{right:6px}
+@media(max-width:700px){.cbtn{display:none}}
+@media(min-width:701px){.slide{flex-basis:320px}}
+.empty{background:var(--paper);border:2px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;color:var(--muted);font-weight:600}
+
+/* ---- single floating WhatsApp button ---- */
+.fab{position:fixed;right:14px;bottom:88px;z-index:45;width:60px;height:60px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.fab svg{width:34px;height:34px;fill:#fff}
+.fab:after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:fab 2.4s infinite}
+@keyframes fab{70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@media(min-width:701px){.fab{bottom:28px;right:24px}}
+@media(prefers-reduced-motion:reduce){.fab:after{animation:none}}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(10,25,50,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal .box{background:#fff;color:var(--ink);border-radius:16px;padding:26px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.modal .ok{font-size:44px;line-height:1}
+.modal h3{font-size:24px;margin:8px 0 6px}
+.modal p{font-weight:600;line-height:1.5}
+.modal .btn.alt{background:#fff;color:var(--ink);border:2px solid var(--line)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body data-lang="hi">
+
+<a class="gov" href="https://pmsuryaghar.gov.in" target="_blank" rel="noopener"><div class="wrap"><span class="hi">📢 <b>पीएम सूर्य घर: मुफ़्त बिजली योजना</b><span class="more">। 1 करोड़ घरों को हर महीने 300 यूनिट तक मुफ़्त बिजली का लक्ष्य।</span> <u>सरकारी पोर्टल देखें</u></span><span class="en">📢 <b>PM Surya Ghar: Muft Bijli Yojana</b><span class="more">. Aim: up to 300 units of free electricity a month for 1 crore households.</span> <u>Visit official portal</u></span></div></a>
+<header><div class="wrap">
+  <a class="brand" href="#" aria-label="Matoshree Enterprises"><img src="logo.png" width="300" height="207" alt="Matoshree: Powering Your Savings with Solar"></a>
+  <div class="hright">
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="hi" aria-pressed="true">हिंदी</button>
+      <button type="button" data-set="en" aria-pressed="false">English</button>
+    </div>
+    <button type="button" id="mbtn" class="mbtn" aria-label="Menu" aria-expanded="false" aria-controls="pmenu">☰</button>
+  </div>
+  <nav id="pmenu" class="pmenu" hidden>
+    <a href="#subsidy"><span class="hi">सब्सिडी</span><span class="en">Subsidy</span></a>
+    <a href="#how"><span class="hi">सोलर कैसे लगता है</span><span class="en">How It Works</span></a>
+    <a href="#calc-sec"><span class="hi">बचत कैलकुलेटर</span><span class="en">Savings Calculator</span></a>
+    <a href="#work"><span class="hi">हम कहाँ काम करते हैं</span><span class="en">Where We Work</span></a>
+    <a href="#quote"><span class="hi">फ्री कोटेशन</span><span class="en">Free Quotation</span></a>
+    <a href="#faq"><span class="hi">आम सवाल</span><span class="en">FAQ</span></a>
+    <a href="admin.html" class="adm" rel="nofollow">Admin</a>
+  </nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+  <div class="badge"><a href="https://mnre.gov.in/en/" target="_blank" rel="noopener" aria-label="MNRE Approved Channel Partner"><img src="MNRE_Approved.png" width="140" height="140" alt="Govt. of India MNRE Approved Channel Partner"></a><div class="g">GSTIN<span id="gstin">09GEXPD2013C1ZE</span></div></div>
+  <h1 class="sr"><span class="hi">अपनी छत पर सोलर लगवाएं, बिजली बिल घटाएं</span><span class="en">Put solar on your roof and cut your electricity bill</span></h1>
+  <img class="hlogo" src="logo-large.png" width="560" height="330" alt="Matoshree">
+  <p class="tag">Powering Your Savings with Solar</p>
+  <div class="hstats">
+    <div class="hs"><b id="orders" aria-label="92">92</b><span class="hi">इंस्टॉलेशन सफलतापूर्वक पूरे हुए</span><span class="en">Installations Completed Successfully</span></div>
+    <div class="hs live" id="liveBox"><b id="ongoing">5</b><span><i class="dot"></i><span class="hi">इंस्टॉलेशन प्रोसेस में हैं</span><span class="en">Installations Under Process</span></span></div>
+  </div>
+</div></div>
+
+<section id="subsidy"><div class="wrap">
+  <h2><span class="hi">सब्सिडी कितनी मिलती है?</span><span class="en">How Much Subsidy Do You Get?</span></h2>
+  <div class="sub">
+    <div><strong>₹30,000</strong><span class="hi">प्रति kW, 2 kW तक</span><span class="en">per kW, Up To 2 kW</span></div>
+    <div><strong>₹18,000</strong><span class="hi">प्रति kW, अतिरिक्त क्षमता पर (3 kW तक)</span><span class="en">per kW, For Additional Capacity Up To 3 kW</span></div>
+    <div><strong>₹78,000</strong><span class="hi">3 kW से बड़े सिस्टम पर कुल सब्सिडी की अधिकतम सीमा</span><span class="en">Total Subsidy Cap For Systems Larger Than 3 kW</span></div>
+  </div>
+  <p class="note"><span class="hi">आवासीय (घर) ग्राहकों के लिए, PM Surya Ghar योजना के नियमों के अनुसार। सब्सिडी सीधे आपके बैंक खाते में आती है।</span><span class="en">For residential households, as per PM Surya Ghar scheme rules. Subsidy is credited directly to your bank account.</span></p>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2><span class="hi">सोलर कैसे लगता है?</span><span class="en">How It Works</span></h2>
+  <ol class="pipe"><li><h3><span class="hi">फ्री साइट सर्वे</span><span class="en">Free Site Survey</span></h3><p><span class="hi">छत की जगह, छाया और आपके बिजली बिल की जांच।</span><span class="en">We check roof space, shade and your electricity bill.</span></p></li><li><h3><span class="hi">डिज़ाइन और कोटेशन</span><span class="en">Design And Quotation</span></h3><p><span class="hi">आपके बजट के हिसाब से सही kW का सिस्टम और साफ़ कीमत।</span><span class="en">The right kW system for your budget, with a clear price.</span></p></li><li><h3><span class="hi">रजिस्ट्रेशन और कागज़ात</span><span class="en">Registration And Paperwork</span></h3><p><span class="hi">PM Surya Ghar पोर्टल पर आवेदन और सभी दस्तावेज़ हम संभालते हैं।</span><span class="en">We apply on the PM Surya Ghar portal and handle all documents.</span></p></li><li><h3><span class="hi">इंस्टॉलेशन</span><span class="en">Installation</span></h3><p><span class="hi">पैनल, इन्वर्टर और वायरिंग हमारी अनुभवी टीम लगाती है।</span><span class="en">Our trained team installs panels, inverter and wiring.</span></p></li><li><h3><span class="hi">नेट मीटर और सब्सिडी</span><span class="en">Net Meter And Subsidy</span></h3><p><span class="hi">निरीक्षण और नेट मीटर के बाद सिस्टम चालू। सब्सिडी आपके बैंक खाते में।</span><span class="en">After inspection and net meter, your system goes live. Subsidy comes to your bank account.</span></p></li></ol>
+</div></section>
+
+<section id="calc-sec" style="background:#fff3d6"><div class="wrap">
+  <h2><span class="hi">अपनी बचत जानें</span><span class="en">Estimate your savings</span></h2>
+  <div class="calc">
+    <div class="row">
+      <div><label for="bill"><span class="hi">महीने का बिजली बिल (₹)</span><span class="en">Monthly electricity bill (₹)</span></label>
+      <input id="bill" type="number" inputmode="numeric" min="0" placeholder="2000"></div>
+      <div><label for="type"><span class="hi">कहाँ लगवाना है?</span><span class="en">Where to install?</span></label>
+      <select id="type"><option value="res">घर / Home</option><option value="com">दुकान, फैक्ट्री / Commercial</option></select></div>
+    </div>
+    <button class="btn sun" id="calc" type="button" style="margin-top:16px;width:100%"><span class="hi">हिसाब लगाएं</span><span class="en">Calculate</span></button>
+    <div class="out" id="out" aria-live="polite">
+      <dl>
+        <dt><span class="hi">सुझाया गया सिस्टम</span><span class="en">Suggested system</span></dt><dd id="r-kw"></dd>
+        <dt class="x"><span class="hi">हर महीने बिजली बनेगी</span><span class="en">Monthly generation</span></dt><dd class="x" id="r-gen"></dd>
+        <dt><span class="hi">लगभग खर्च</span><span class="en">Approx. cost</span></dt><dd id="r-cost"></dd>
+        <dt><span class="hi">सरकारी सब्सिडी</span><span class="en">Government subsidy</span></dt><dd id="r-sub"></dd>
+        <dt class="pay"><span class="hi">आपको देना होगा</span><span class="en">You pay</span></dt><dd class="pay" id="r-pay"></dd>
+        <dt><span class="hi">हर महीने बचत</span><span class="en">Monthly saving</span></dt><dd id="r-save"></dd>
+        <dt class="x"><span class="hi">हर साल बचत</span><span class="en">Yearly saving</span></dt><dd class="x" id="r-year"></dd>
+        <dt><span class="hi">पैसा वसूल होने में</span><span class="en">Pays back in</span></dt><dd id="r-pb"></dd>
+      </dl>
+      <p class="note"><span class="hi">यह सिर्फ अनुमान है। सही कोटेशन फ्री सर्वे के बाद मिलेगा।</span><span class="en">This is only an estimate. Exact quote after the free survey.</span></p>
+      <a class="btn wa" data-wa data-msg="calc" href="#" style="margin-top:14px;display:block"><span class="hi">इस हिसाब पर WhatsApp करें</span><span class="en">Send this on WhatsApp</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section id="work" style="background:#fff"><div class="wrap">
+  <h2><span class="hi">हमारे द्वारा किए गए इंस्टॉलेशन</span><span class="en">Our Installation</span></h2>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="carwrap" id="carwrap">
+    <button type="button" class="cbtn prev" id="cprev" aria-label="Previous photo">‹</button>
+    <div class="car" id="car" tabindex="0" role="region" aria-label="Installation photos"></div>
+    <button type="button" class="cbtn next" id="cnext" aria-label="Next photo">›</button>
+  </div>
+  <p class="empty" id="carEmpty" hidden><span class="hi">इस शहर की तस्वीरें जल्द ही यहाँ जोड़ी जाएंगी।</span><span class="en">Photos From This City Will Be Added Soon.</span></p>
+</div></section>
+
+<section class="lead" id="quote"><div class="wrap">
+  <h2><span class="hi">फ्री कोटेशन पाएं</span><span class="en">Get your free quote</span></h2>
+  <form id="f" novalidate>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    <label for="n"><span class="hi">आपका नाम</span><span class="en">Your Name</span></label>
+    <input id="n" name="name" autocomplete="name" required>
+    <label for="p"><span class="hi">मोबाइल नंबर</span><span class="en">Mobile Number</span></label>
+    <input id="p" name="phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" required>
+    <label for="c"><span class="hi">शहर</span><span class="en">City</span></label>
+    <select id="c" name="city"><option>वाराणसी / Varanasi</option><option>भदोही / Bhadohi</option><option>चित्रकूट / Chitrakoot</option><option>जौनपुर / Jaunpur</option><option>प्रयागराज / Prayagraj</option><option>अन्य / Other</option></select>
+    <label for="b"><span class="hi">महीने का बिजली बिल (₹)</span><span class="en">Monthly bill (₹)</span></label>
+    <input id="b" name="bill" type="number" inputmode="numeric" min="0">
+    <p id="err" role="alert" style="color:#ffd27a;margin-top:10px;font-weight:600"></p>
+    <button class="btn sun" type="submit"><span class="hi">भेजें, हम कॉल करेंगे</span><span class="en">Send, We Will Call You</span></button>
+  </form>
+  <div id="thanks" class="modal" role="dialog" aria-modal="true" aria-labelledby="thTitle" hidden>
+    <div class="box">
+      <div class="ok">✅</div>
+      <h3 id="thTitle"><span class="hi">धन्यवाद!</span><span class="en">Thank You!</span></h3>
+      <p><span class="hi">आपकी जानकारी मिल गई है। हमारी टीम 24 घंटे के अंदर आपको कॉल करेगी।</span><span class="en">We Have Received Your Details. Our Team Will Call You Within 24 Hours.</span></p>
+      <a class="btn wa" data-wa href="#" style="margin-top:14px;display:block"><span class="hi">WhatsApp पर भी बात करें</span><span class="en">Chat on WhatsApp too</span></a>
+      <button type="button" class="btn alt" id="thClose" style="margin-top:10px;width:100%"><span class="hi">ठीक है</span><span class="en">OK</span></button>
+    </div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2><span class="hi">आम सवाल</span><span class="en">Common questions</span></h2>
+  <details><summary><span class="hi">सब्सिडी कब और कैसे मिलती है?</span><span class="en">When and how is the subsidy paid?</span></summary><p><span class="hi">इंस्टॉलेशन और निरीक्षण के बाद सरकारी पोर्टल के ज़रिए सीधे आपके बैंक खाते में आती है। पूरा आवेदन हम करवाते हैं।</span><span class="en">After installation and inspection it is credited via the government portal to your bank account. We file the full application.</span></p></details>
+  <details><summary><span class="hi">कितने kW का सिस्टम चाहिए?</span><span class="en">What system size do I need?</span></summary><p><span class="hi">यह आपके बिजली बिल और छत की जगह पर निर्भर है। फ्री सर्वे में हम बताते हैं।</span><span class="en">It depends on your bill and roof space. We tell you in the free survey.</span></p></details>
+  <details><summary><span class="hi">बिजली जाने पर क्या सोलर चलेगा?</span><span class="en">Does solar work during a power cut?</span></summary><p><span class="hi">ग्रिड वाला सिस्टम बिजली कटने पर बंद हो जाता है। बैटरी चाहिए तो हम अलग विकल्प बताएंगे।</span><span class="en">A grid-tied system stops during a power cut. If you want battery backup, we will suggest other options.</span></p></details>
+  <details><summary><span class="hi">मेंटेनेंस और वारंटी?</span><span class="en">Maintenance and warranty?</span></summary><p><span class="hi">पैनल और इन्वर्टर पर निर्माता की वारंटी मिलती है, और हमारी टीम बाद में भी सर्विस देती है।</span><span class="en">Panels and inverter carry the manufacturer's warranty, and our team provides after-sales service.</span></p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><span class="flogo"><img src="logo.png" width="300" height="207" alt="Matoshree"></span><br><span class="hi">आपका सोलर साथी। सही सिस्टम, सब्सिडी के साथ।</span><span class="en">Your Solar Partner. The Right System, With Subsidy.</span></div>
+    <div><h3><span class="hi">शाखा 1: वाराणसी</span><span class="en">Branch 1: Varanasi</span></h3>AN 58, Shankarpuram Chauraha,<br>Benipur, Pahariya,<br>Varanasi - 221007<br><a href="https://www.google.com/maps/search/?api=1&amp;query=25.372750,83.006833" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="Branch-1.PNG" width="900" height="937" loading="lazy" alt="Matoshree Enterprises showroom, Benipur, Pahariya, Varanasi"></div>
+    <div><h3><span class="hi">शाखा 2: चित्रकूट</span><span class="en">Branch 2: Chitrakoot</span></h3>Bankat Road, Karwi,<br>Chitrakoot, Uttar Pradesh 210205<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Bankat+Road+Karwi+Chitrakoot+210205" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a></div>
+    <div><h3><span class="hi">संपर्क</span><span class="en">Contact Us</span></h3>📞 <a data-tel href="#"></a><br>💬 <a data-wa href="#">WhatsApp</a><br>✉️ <a data-mail href="#"></a><br>▶️ <a href="https://www.youtube.com/@MatoshreeEnterprisesSolar" target="_blank" rel="noopener">YouTube</a><br><br><span class="soon"><span class="hi">जल्द आ रही है: भदोही शाखा</span><span class="en">Coming Soon: Bhadohi Branch</span></span></div>
+  </div>
+  <p class="legal"><span class="hi">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>। हम एक स्वतंत्र सोलर इंस्टॉलर हैं, सरकारी संस्था नहीं। सब्सिडी भारत सरकार की PM Surya Ghar योजना के नियमों के अनुसार मिलती है।</span><span class="en">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>. We are an independent solar installer, not a government body. Subsidy is given under the Government of India's PM Surya Ghar scheme as per its rules.</span></p>
+</div></footer>
+
+<a class="fab" data-wa href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script>
+/* Menu: kept separate so nothing else on the page can break it */
+(function(){
+  var btn=document.getElementById("mbtn"), menu=document.getElementById("pmenu");
+  function close(){menu.hidden=true; btn.setAttribute("aria-expanded","false")}
+  btn.onclick=function(e){e.stopPropagation(); var open=menu.hidden; menu.hidden=!open; btn.setAttribute("aria-expanded",String(open))};
+  menu.addEventListener("click",function(e){ if(e.target.closest("a")) close() });
+  document.addEventListener("click",function(e){ if(!menu.contains(e.target)) close() });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") close() });
+})();
+</script>
+<script src="config.js"></script>
+<script>
+if(typeof CFG==="undefined"){
+  console.error("config.js did not load or has a syntax error. Using safe defaults; phone and WhatsApp links will not work until it is fixed.");
+  window.CFG={phone:"",phoneShow:"",email:"",fixedCost:15000,costPerKw:55000,orders:92,maxKw:10,tariff:7,unitsPerKwMonth:120};
+}
+
+var body = document.body, lastCalc = "";
+function setLang(l){
+  body.dataset.lang = l; document.documentElement.lang = l;
+  document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed", b.dataset.set===l)});
+  try{localStorage.setItem("lang", l)}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(function(b){b.onclick=function(){setLang(b.dataset.set)}});
+try{var s=localStorage.getItem("lang"); if(s) setLang(s)}catch(e){}
+
+function wa(text){return "https://wa.me/"+CFG.phone+"?text="+encodeURIComponent(text)}
+document.querySelectorAll("[data-wa]").forEach(function(a){
+  var t = a.dataset.msg==="calc" ? null : "नमस्ते, मुझे सोलर की जानकारी चाहिए।";
+  a.target="_blank"; a.rel="noopener";
+  a.onclick=function(){ if(t===null) a.href=wa(lastCalc); };
+  if(t!==null) a.href=wa(t);
+});
+document.querySelectorAll("[data-tel]").forEach(function(a){
+  a.href="tel:+"+CFG.phone; if(!a.children.length) a.textContent=CFG.phoneShow;
+});
+
+if(CFG.gstin) document.querySelectorAll("#gstin,.gstin2").forEach(function(e){e.textContent=CFG.gstin});
+document.querySelectorAll("[data-mail]").forEach(function(a){a.href="mailto:"+CFG.email;a.textContent=CFG.email});
+function inr(n){return "₹"+Math.round(n).toLocaleString("en-IN")}
+function subsidy(kw){return kw>=3?78000:kw*30000} /* residential rooftop, PM Surya Ghar */
+function calc(){
+  var bill=+document.getElementById("bill").value, out=document.getElementById("out");
+  if(!bill||bill<=0){out.classList.remove("on");return}
+  var home=document.getElementById("type").value==="res";
+  var kw=Math.min(CFG.maxKw,Math.max(1,Math.ceil(bill/CFG.tariff/CFG.unitsPerKwMonth)));
+  var gen=kw*CFG.unitsPerKwMonth, cost=CFG.fixedCost+kw*CFG.costPerKw, sub=home?subsidy(kw):0, pay=cost-sub;
+  var save=Math.min(bill*0.9,gen*CFG.tariff), pb=pay/(save*12);
+  var t=function(id,v){document.getElementById(id).textContent=v};
+  t("r-kw",kw+" kW"); t("r-gen",gen+" units"); t("r-cost",inr(cost)); t("r-sub",home?inr(sub):"—"); t("r-pay",inr(pay));
+  t("r-save",inr(save)); t("r-year",inr(save*12)); t("r-pb",pb.toFixed(1)+" yr / साल");
+  out.classList.add("on");
+  lastCalc="नमस्ते, मेरा बिजली बिल ₹"+bill+" है ("+(home?"घर":"कमर्शियल")+"). कैलकुलेटर के अनुसार "+kw+" kW सिस्टम, सब्सिडी "+inr(sub)+", अनुमानित खर्च "+inr(pay)+". कृपया फ्री सर्वे और कोटेशन दें।";
+}
+document.getElementById("calc").onclick=calc;
+document.getElementById("bill").oninput=calc;
+document.getElementById("type").onchange=calc;
+
+document.getElementById("f").onsubmit=function(e){
+  e.preventDefault();
+  var f=this, n=f.name.value.trim(), p=f.phone.value.trim(), err=document.getElementById("err"), btn=f.querySelector("button[type=submit]");
+  if(!n||!/^[6-9]\d{9}$/.test(p)){
+    err.textContent = body.dataset.lang==="hi" ? "कृपया सही नाम और 10 अंकों का मोबाइल नंबर लिखें।" : "Please Enter Your Name and a Valid 10-digit Mobile Number.";
+    return;
+  }
+  err.textContent="";
+  var d={name:n,phone:p,city:f.city.value,bill:f.bill.value,website:f.website.value,lang:body.dataset.lang};
+  var thanks=document.getElementById("thanks");
+  function closeThanks(){thanks.hidden=true}
+  document.getElementById("thClose").onclick=closeThanks;
+  thanks.onclick=function(ev){if(ev.target===thanks)closeThanks()};
+  document.addEventListener("keydown",function(ev){if(ev.key==="Escape")closeThanks()});
+  btn.disabled=true;
+  fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); f.reset(); thanks.hidden=false; document.getElementById("thClose").focus(); })
+    .catch(function(){
+      // Do not pretend it worked: show an error with a one-tap WhatsApp option instead of silently redirecting.
+      err.textContent = body.dataset.lang==="hi" ? "अभी जानकारी नहीं भेज पाए। कृपया दोबारा कोशिश करें या नीचे बटन से WhatsApp करें।" : "We Could Not Send Your Details Right Now. Please Try Again, or Use the WhatsApp Button in the Bar Below.";
+    })
+    .then(function(){ btn.disabled=false });
+};
+
+function countUp(el,end){
+  el.setAttribute("aria-label",end);
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches||end<2){el.textContent=end;return}
+  var t0=null, dur=2200; el.textContent=1;
+  function tick(ts){
+    if(t0===null) t0=ts;
+    var p=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.max(1,Math.round(end*e));
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+(function(){
+  var started=false, el=document.getElementById("orders");
+  var DEF_ONGOING=(typeof CFG.ongoing==="number")?CFG.ongoing:5;
+  function run(orders,ongoing){
+    if(started) return; started=true;
+    countUp(el,orders);
+    var box=document.getElementById("liveBox"), og=(ongoing===null||ongoing===undefined)?DEF_ONGOING:+ongoing;
+    if(og>0){ document.getElementById("ongoing").textContent=og; box.hidden=false } else box.hidden=true;
+  }
+  var timer=setTimeout(function(){run(CFG.orders,null)},1500);
+  fetch("/api/stats").then(function(r){return r.json()}).then(function(j){
+    clearTimeout(timer); run(+j.orders>0?+j.orders:CFG.orders, j.ongoing);
+  }).catch(function(){clearTimeout(timer); run(CFG.orders,null)});
+})();
+
+/* Where we work: city tabs + endless slider, photos come from the admin page */
+(function(){
+  var CITIES=[
+    {k:"varanasi",hi:"वाराणसी",en:"Varanasi",m:/varanasi|banaras|benares|kashi|वाराणसी|बनारस|काशी/i},
+    {k:"bhadohi",hi:"भदोही",en:"Bhadohi",m:/bhadohi|भदोही/i},
+    {k:"chitrakoot",hi:"चित्रकूट",en:"Chitrakoot",m:/chitrakoot|chitrakut|karwi|चित्रकूट|कर्वी/i},
+    {k:"jaunpur",hi:"जौनपुर",en:"Jaunpur",m:/jaunpur|जौनपुर/i},
+    {k:"prayagraj",hi:"प्रयागराज",en:"Prayagraj",m:/prayagraj|allahabad|प्रयागराज|इलाहाबाद/i}
+  ];
+  var tabs=document.getElementById("tabs"), car=document.getElementById("car"), wrap=document.getElementById("carwrap"), empty=document.getElementById("carEmpty");
+  var by={}, setW=0, active=null;
+  CITIES.forEach(function(c){by[c.k]=[]});
+
+  CITIES.forEach(function(c){
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("role","tab"); b.dataset.k=c.k;
+    b.innerHTML='<span class="hi">'+c.hi+'</span><span class="en">'+c.en+'</span>';
+    b.onclick=function(){select(c.k)};
+    tabs.appendChild(b);
+  });
+
+  function slide(i,clone){
+    var f=document.createElement("figure"); f.className="slide"; if(clone) f.setAttribute("aria-hidden","true");
+    var im=document.createElement("img"); im.src="/api/photo/"+i.photo_id; im.alt=clone?"":i.title; im.loading="lazy"; im.draggable=false;
+    var c=document.createElement("figcaption"); c.textContent=i.title;
+    var sub=[i.kw?i.kw+" kW":""].filter(Boolean).join(" · ");
+    if(sub&&sub!==i.title){var sm=document.createElement("small"); sm.textContent=sub; c.appendChild(sm)}
+    f.appendChild(im); f.appendChild(c); return f;
+  }
+  function select(k){
+    active=k;
+    tabs.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-selected",String(b.dataset.k===k))});
+    build(by[k]||[]);
+  }
+  function build(items){
+    car.textContent=""; setW=0;
+    if(!items.length){wrap.hidden=true; empty.hidden=false; return}
+    wrap.hidden=false; empty.hidden=true;
+    if(items.length===1){ car.appendChild(slide(items[0])); car.style.justifyContent="center"; return }
+    car.style.justifyContent="";
+    var base=items.slice(); while(base.length<4) base=base.concat(items);   /* one "set" is always wider than the screen */
+    for(var s=0;s<3;s++) base.forEach(function(i){ car.appendChild(slide(i,s!==1)) });
+    requestAnimationFrame(function(){ setW=car.scrollWidth/3; jump(setW) });
+  }
+  function jump(x){ car.style.scrollSnapType="none"; car.scrollLeft=x; requestAnimationFrame(function(){car.style.scrollSnapType=""}) }
+  var ticking=false;
+  car.addEventListener("scroll",function(){
+    if(!setW||ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      if(car.scrollLeft<setW*0.5) jump(car.scrollLeft+setW);
+      else if(car.scrollLeft>setW*1.5) jump(car.scrollLeft-setW);
+    });
+  });
+  function step(d){ var f=car.querySelector(".slide"); if(!f) return; car.scrollBy({left:d*(f.offsetWidth+12),behavior:"smooth"}) }
+  document.getElementById("cprev").onclick=function(){step(-1)};
+  document.getElementById("cnext").onclick=function(){step(1)};
+  car.addEventListener("keydown",function(e){ if(e.key==="ArrowLeft"){e.preventDefault();step(-1)} if(e.key==="ArrowRight"){e.preventDefault();step(1)} });
+  /* mouse drag (touch uses native swipe) */
+  var down=false,sx=0,sl=0;
+  car.addEventListener("pointerdown",function(e){ if(e.pointerType!=="mouse") return; down=true; sx=e.clientX; sl=car.scrollLeft; car.classList.add("drag") });
+  window.addEventListener("pointermove",function(e){ if(down) car.scrollLeft=sl-(e.clientX-sx) });
+  window.addEventListener("pointerup",function(){ if(down){down=false; car.classList.remove("drag")} });
+
+  select("varanasi");
+  fetch("/api/installations").then(function(r){return r.json()}).then(function(d){
+    (d.installations||[]).forEach(function(i){
+      for(var n=0;n<CITIES.length;n++){ if(CITIES[n].m.test(i.city||"")){ by[CITIES[n].k].push(i); break } }
+    });
+    var first=CITIES.filter(function(c){return by[c.k].length})[0];
+    select(first?first.k:"varanasi");
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
