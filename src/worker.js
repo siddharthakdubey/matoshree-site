@@ -58,11 +58,16 @@ function ensureSchema(env) {
 }
 
 // Update-then-insert works on any table layout (no reliance on ON CONFLICT).
-async function setOrders(env, n) {
-  const r = await env.DB.prepare("UPDATE settings SET value=? WHERE key='orders_completed'").bind(String(n)).run();
+async function setSetting(env, key, n) {
+  const r = await env.DB.prepare("UPDATE settings SET value=? WHERE key=?").bind(String(n), key).run();
   if (!r.meta || !r.meta.changes)
-    await env.DB.prepare("INSERT INTO settings (key,value) VALUES ('orders_completed',?)").bind(String(n)).run();
+    await env.DB.prepare("INSERT INTO settings (key,value) VALUES (?,?)").bind(key, String(n)).run();
 }
+async function getSetting(env, key) {
+  const row = await env.DB.prepare("SELECT value FROM settings WHERE key=?").bind(key).first();
+  return row ? parseInt(row.value, 10) || 0 : 0;
+}
+const setOrders = (env, n) => setSetting(env, "orders_completed", n);
 async function bumpOrders(env) { await setOrders(env, (await getOrders(env)) + 1); }
 
 async function saveLead(req, env) {
@@ -138,11 +143,18 @@ async function admin(req, env, url) {
     await setOrders(env, n);
     return json({ ok: true, orders: n });
   }
+  if (path === "/api/admin/ongoing" && req.method === "PUT") {
+    let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+    const n = parseInt(b.ongoing, 10);
+    if (!Number.isFinite(n) || n < 0 || n > 100000) return json({ error: "bad_number" }, 400);
+    await setSetting(env, "ongoing_installs", n);
+    return json({ ok: true, ongoing: n });
+  }
   if (path === "/api/admin/installations" && req.method === "GET") {
     const { results } = await env.DB.prepare(
       "SELECT id,created_at,title,city,kw,photo_id,visible FROM installations ORDER BY id DESC LIMIT 500"
     ).all();
-    return json({ installations: results, orders: await getOrders(env) });
+    return json({ installations: results, orders: await getOrders(env), ongoing: await getSetting(env, "ongoing_installs") });
   }
 
   if (path === "/api/admin/installations" && req.method === "POST") {
@@ -193,11 +205,11 @@ export default {
       if (url.pathname.startsWith("/api/") && !env.DB) throw new Error("D1 database is not bound: in wrangler.jsonc the binding name must be DB");
       if (url.pathname.startsWith("/api/")) await ensureSchema(env);
       if (url.pathname === "/api/stats" && req.method === "GET") {
-        return json({ orders: await getOrders(env) }, 200, { "Cache-Control": "public, max-age=60" });
+        return json({ orders: await getOrders(env), ongoing: await getSetting(env, "ongoing_installs") }, 200, { "Cache-Control": "public, max-age=60" });
       }
       if (url.pathname === "/api/installations" && req.method === "GET") {
         const { results } = await env.DB.prepare(
-          "SELECT id,title,city,kw,photo_id FROM installations WHERE visible=1 AND photo_id IS NOT NULL ORDER BY id DESC LIMIT 12"
+          "SELECT id,title,city,kw,photo_id FROM installations WHERE visible=1 AND photo_id IS NOT NULL ORDER BY id DESC LIMIT 60"
         ).all();
         return json({ installations: results }, 200, { "Cache-Control": "public, max-age=60" });
       }
