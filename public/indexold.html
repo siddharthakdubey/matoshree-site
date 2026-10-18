@@ -120,7 +120,7 @@ section{scroll-margin-top:72px}
  -webkit-mask-image:linear-gradient(to top,#000 25%,transparent 95%);mask-image:linear-gradient(to top,#000 40%,transparent 100%)}
 .hero .wrap{display:block}
 .hero .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.hero .hlogo{display:block;margin:0 auto;width:100%;max-width:272px;height:auto;mix-blend-mode:multiply}
+.hero .hlogo{display:block;margin:0 auto;width:100%;max-width:272px;height:auto}
 .hero .tag{margin:6px 0 0;font-size:clamp(18px,4.6vw,26px);font-weight:700;letter-spacing:.2px;color:#e8661afe;line-height:1.3}
 .hstats{display:flex;justify-content:center;gap:12px;margin-top:20px}
 .hs{flex:1 1 0;max-width:300px;background:rgba(255,255,255,.88);border:1px solid rgba(23,58,110,.12);border-left:6px solid var(--sun);border-radius:12px;padding:10px 12px;text-align:left;box-shadow:0 6px 18px rgba(23,58,110,.12);display:flex;align-items:center;gap:10px}
@@ -137,11 +137,14 @@ section{scroll-margin-top:72px}
 /* ---- top-left MNRE badge + GSTIN ---- */
 .hero .wrap{position:relative}
 .badge{position:absolute;left:14px;top:0;display:flex;flex-direction:column;align-items:center;width:max-content;text-align:center}
-.badge img{display:block;width:71px;height:71px;object-fit:contain;mix-blend-mode:multiply}
+.badge img{display:block;width:71px;height:71px;object-fit:contain}
 .badge .g{margin-top:2px;font-size:10.5px;line-height:1.25;font-weight:700;color:var(--ink);letter-spacing:.2px;text-shadow:0 0 4px #fff,0 0 4px #fff}
 .badge .g span{display:block;font-size:10px;letter-spacing:.4px;white-space:nowrap}
 @media(max-width:560px){.badge{left:8px}.badge img{width:54px;height:54px}.badge .g{font-size:9px}.badge .g span{font-size:8.5px;white-space:nowrap}}
-.bphoto{display:block;width:100%;max-width:260px;height:auto;border-radius:12px;margin-top:12px;border:2px solid #2c4876}
+.bphoto{display:block;width:100%;max-width:260px;height:auto;aspect-ratio:900/937;object-fit:cover;object-position:50% 30%;border-radius:12px;margin-top:12px;border:2px solid #2c4876}
+.ci{display:flex;align-items:center;gap:10px;margin:8px 0}
+.ci svg{width:22px;height:22px;flex:0 0 22px;display:block}
+.ci a{word-break:break-word}
 
 /* ---- where we work: city tabs + endless photo slider ---- */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
@@ -202,9 +205,9 @@ section{scroll-margin-top:72px}
 
 <main>
 <div class="hero"><div class="wrap">
-  <div class="badge"><a href="https://mnre.gov.in/en/" target="_blank" rel="noopener" aria-label="MNRE Approved Channel Partner"><img src="MNRE_Approved.png" width="140" height="140" alt="Govt. of India MNRE Approved Channel Partner"></a><div class="g">GSTIN<span id="gstin">09GEXPD2013C1ZE</span></div></div>
+  <div class="badge"><a href="https://mnre.gov.in/en/" target="_blank" rel="noopener" aria-label="MNRE Approved Channel Partner"><img src="MNRE_Approved.png" width="280" height="280" alt="Govt. of India MNRE Approved Channel Partner"></a><div class="g">GSTIN<span id="gstin">09GFXPD2013G1ZE</span></div></div>
   <h1 class="sr"><span class="hi">अपनी छत पर सोलर लगवाएं, बिजली बिल घटाएं</span><span class="en">Put solar on your roof and cut your electricity bill</span></h1>
-  <img class="hlogo" src="logo-large.png" width="560" height="330" alt="Matoshree">
+  <img class="hlogo" src="logo-large.png" width="800" height="465" alt="Matoshree">
   <p class="tag">Powering Your Savings with Solar</p>
   <div class="hstats">
     <div class="hs"><b id="orders" aria-label="92">92</b><span class="hi">इंस्टॉलेशन सफलतापूर्वक पूरे हुए</span><span class="en">Installations Completed Successfully</span></div>
@@ -303,11 +306,11 @@ section{scroll-margin-top:72px}
 <footer><div class="wrap">
   <div class="fgrid">
     <div><span class="flogo"><img src="logo.png" width="300" height="207" alt="Matoshree"></span><br><span class="hi">आपका सोलर साथी। सही सिस्टम, सब्सिडी के साथ।</span><span class="en">Your Solar Partner. The Right System, With Subsidy.</span></div>
-    <div><h3><span class="hi">शाखा 1: वाराणसी</span><span class="en">Branch 1: Varanasi</span></h3>AN 58, Shankarpuram Chauraha,<br>Benipur, Pahariya,<br>Varanasi - 221007<br><a href="https://www.google.com/maps/search/?api=1&amp;query=25.372750,83.006833" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="Branch-1.PNG" width="900" height="937" loading="lazy" alt="Matoshree Enterprises showroom, Benipur, Pahariya, Varanasi"></div>
-    <div><h3><span class="hi">शाखा 2: चित्रकूट</span><span class="en">Branch 2: Chitrakoot</span></h3>Bankat Road, Karwi,<br>Chitrakoot, Uttar Pradesh 210205<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Bankat+Road+Karwi+Chitrakoot+210205" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a></div>
-    <div><h3><span class="hi">संपर्क</span><span class="en">Contact Us</span></h3>📞 <a data-tel href="#"></a><br>💬 <a data-wa href="#">WhatsApp</a><br>✉️ <a data-mail href="#"></a><br>▶️ <a href="https://www.youtube.com/@MatoshreeEnterprisesSolar" target="_blank" rel="noopener">YouTube</a><br><br><span class="soon"><span class="hi">जल्द आ रही है: भदोही शाखा</span><span class="en">Coming Soon: Bhadohi Branch</span></span></div>
+    <div><h3><span class="hi">शाखा 1: वाराणसी</span><span class="en">Branch 1: Varanasi</span></h3>AN 58, Shankarpuram Chauraha,<br>Benipur, Pahariya,<br>Varanasi - 221007<br><a href="https://www.google.com/maps/search/?api=1&amp;query=25.372750,83.006833" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="branch-1.png" width="900" height="937" loading="lazy" alt="Matoshree Enterprises showroom, Benipur, Pahariya, Varanasi"></div>
+    <div><h3><span class="hi">शाखा 2: चित्रकूट</span><span class="en">Branch 2: Chitrakoot</span></h3>Bankat Road, Karwi,<br>Chitrakoot,<br>Uttar Pradesh 210205<br><a href="https://www.google.com/maps?q=25.2287654876709,80.92034149169922&z=17&hl=en" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="branch-2.jpeg" width="900" height="937" loading="lazy" alt="Matoshree Enterprises showroom, Chitrakoot"></div>
+    <div><h3><span class="hi">संपर्क</span><span class="en">Contact Us</span></h3><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#f39a1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.33 1.78.62 2.62a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.46-1.19a2 2 0 012.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0122 16.92z"/></svg><a data-tel href="#"></a></div><div class="ci"><svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><a data-wa href="#">WhatsApp</a></div><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#9fc3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><a data-mail href="#"></a></div><div class="ci"><svg viewBox="0 0 24 24" fill="#ff0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><a href="https://www.youtube.com/@MatoshreeEnterprisesSolar" target="_blank" rel="noopener">YouTube</a></div><br><br><span class="soon"><span class="hi">जल्द आ रही है: भदोही शाखा</span><span class="en">Coming Soon: Bhadohi Branch</span></span></div>
   </div>
-  <p class="legal"><span class="hi">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>। हम एक स्वतंत्र सोलर इंस्टॉलर हैं, सरकारी संस्था नहीं। सब्सिडी भारत सरकार की PM Surya Ghar योजना के नियमों के अनुसार मिलती है।</span><span class="en">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>. We are an independent solar installer, not a government body. Subsidy is given under the Government of India's PM Surya Ghar scheme as per its rules.</span></p>
+  <p class="legal"><span class="hi">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GFXPD2013G1ZE</span>। हम एक स्वतंत्र सोलर इंस्टॉलर हैं, सरकारी संस्था नहीं। सब्सिडी भारत सरकार की PM Surya Ghar योजना के नियमों के अनुसार मिलती है।</span><span class="en">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GFXPD2013G1ZE</span>. We are an independent solar installer, not a government body. Subsidy is given under the Government of India's PM Surya Ghar scheme as per its rules.</span></p>
 </div></footer>
 
 <a class="fab" data-wa href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
@@ -422,25 +425,31 @@ function countUp(el,end){
   }).catch(function(){clearTimeout(timer); run(CFG.orders,null)});
 })();
 
-/* Where we work: city tabs + endless slider, photos come from the admin page */
+/* Where we work: city tabs + endless slider. Photos and cities come from the admin page; a new city gets its own tab automatically. */
 (function(){
-  var CITIES=[
-    {k:"varanasi",hi:"वाराणसी",en:"Varanasi",m:/varanasi|banaras|benares|kashi|वाराणसी|बनारस|काशी/i},
-    {k:"bhadohi",hi:"भदोही",en:"Bhadohi",m:/bhadohi|भदोही/i},
-    {k:"chitrakoot",hi:"चित्रकूट",en:"Chitrakoot",m:/chitrakoot|chitrakut|karwi|चित्रकूट|कर्वी/i},
-    {k:"jaunpur",hi:"जौनपुर",en:"Jaunpur",m:/jaunpur|जौनपुर/i},
-    {k:"prayagraj",hi:"प्रयागराज",en:"Prayagraj",m:/prayagraj|allahabad|प्रयागराज|इलाहाबाद/i}
+  var KNOWN=[
+    {k:"varanasi",hi:"वाराणसी",en:"Varanasi",always:1,m:/varanasi|banaras|benares|kashi|वाराणसी|बनारस|काशी/i},
+    {k:"bhadohi",hi:"भदोही",en:"Bhadohi",always:1,m:/bhadohi|भदोही/i},
+    {k:"chitrakoot",hi:"चित्रकूट",en:"Chitrakoot",always:1,m:/chitrakoot|chitrakut|karwi|चित्रकूट|कर्वी/i},
+    {k:"jaunpur",hi:"जौनपुर",en:"Jaunpur",always:1,m:/jaunpur|जौनपुर/i},
+    {k:"prayagraj",hi:"प्रयागराज",en:"Prayagraj",always:1,m:/prayagraj|allahabad|प्रयागराज|इलाहाबाद/i},
+    {k:"gopiganj",hi:"गोपीगंज",en:"Gopiganj",always:0,m:/gopiganj|गोपीगंज/i}
   ];
   var tabs=document.getElementById("tabs"), car=document.getElementById("car"), wrap=document.getElementById("carwrap"), empty=document.getElementById("carEmpty");
-  var by={}, setW=0, active=null;
-  CITIES.forEach(function(c){by[c.k]=[]});
+  var by={}, meta={}, order=[], setW=0, active=null;
 
-  CITIES.forEach(function(c){
-    var b=document.createElement("button"); b.type="button"; b.setAttribute("role","tab"); b.dataset.k=c.k;
-    b.innerHTML='<span class="hi">'+c.hi+'</span><span class="en">'+c.en+'</span>';
-    b.onclick=function(){select(c.k)};
-    tabs.appendChild(b);
-  });
+  function addCity(c){ if(!meta[c.k]){ meta[c.k]=c; by[c.k]=[]; order.push(c.k) } }
+  function renderTabs(){
+    tabs.textContent="";
+    order.forEach(function(k){
+      var c=meta[k]; if(!c.always && !by[k].length) return;
+      var b=document.createElement("button"); b.type="button"; b.setAttribute("role","tab"); b.dataset.k=k;
+      var h=document.createElement("span"); h.className="hi"; h.textContent=c.hi;
+      var e=document.createElement("span"); e.className="en"; e.textContent=c.en;
+      b.appendChild(h); b.appendChild(e); b.onclick=function(){select(k)}; tabs.appendChild(b);
+    });
+  }
+  KNOWN.forEach(addCity); renderTabs();
 
   function slide(i,clone){
     var f=document.createElement("figure"); f.className="slide"; if(clone) f.setAttribute("aria-hidden","true");
@@ -488,10 +497,17 @@ function countUp(el,end){
   select("varanasi");
   fetch("/api/installations").then(function(r){return r.json()}).then(function(d){
     (d.installations||[]).forEach(function(i){
-      for(var n=0;n<CITIES.length;n++){ if(CITIES[n].m.test(i.city||"")){ by[CITIES[n].k].push(i); break } }
+      var txt=(i.city||"").trim(), hit=null;
+      for(var n=0;n<KNOWN.length;n++){ if(KNOWN[n].m.test(txt)){ hit=KNOWN[n]; break } }
+      if(!hit){   /* a city we have no special name for: it still gets its own tab, so no photo is ever hidden */
+        var key=txt?"x-"+txt.toLowerCase():"x-other";
+        addCity({k:key,hi:txt||"अन्य",en:txt||"Other",always:0}); hit=meta[key];
+      }
+      by[hit.k].push(i);
     });
-    var first=CITIES.filter(function(c){return by[c.k].length})[0];
-    select(first?first.k:"varanasi");
+    renderTabs();
+    var first=order.filter(function(k){return by[k].length})[0];
+    select(first||"varanasi");
   }).catch(function(){});
 })();
 </script>

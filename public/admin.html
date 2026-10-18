@@ -4,9 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#173a6e">
 <title>Matoshree Admin</title>
 <style>
-:root{--ink:#173a6e;--sun:#f39a1e;--bg:#f6f3ec;--line:#e4dccb;--muted:#5b6780}
+:root{color-scheme:light dark;--ink:#173a6e;--sun:#f39a1e;--bg:#f6f3ec;--line:#e4dccb;--muted:#5b6780}
 *{box-sizing:border-box;margin:0}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.45;padding-bottom:40px}
 header{background:var(--ink);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;z-index:20}
@@ -52,6 +54,24 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
 .ok{color:#1a7f45;font-weight:600}
 .sm{font-size:13px;color:var(--muted)}
 [hidden]{display:none!important}
+
+/* ---- dark theme ---- */
+@media (prefers-color-scheme: dark){
+:root{--ink:#e7eef8;--bg:#0e1623;--line:#2b3c57;--muted:#a6b5cb}
+header{background:#173a6e}
+nav#menu{background:#162133;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+nav#menu button:hover,nav#menu a:hover,nav#menu .on{background:#22324b}
+.btn{color:#173a6e}
+.btn.alt{background:#162133;color:var(--ink);border-color:var(--line)}
+.box,.lead,.inst{background:#162133}
+input[type=text],input[type=number],input[type=password],input[type=date],select{background:#0f1a2a;color:var(--ink)}
+.chip{background:#162133;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--sun);color:#173a6e;border-color:var(--sun)}
+.call{background:#173a6e}
+.inst img{background:#22324b}
+#msg,.err{color:#ff9a90}
+.ok{color:#5fd08b}
+}
 </style>
 </head>
 <body>

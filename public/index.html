@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101a29" media="(prefers-color-scheme: dark)">
 <title>Matoshree Enterprises | Powering Your Savings with Solar</title>
 <meta name="description" content="अपनी छत पर सोलर लगवाएं, बिजली बिल घटाएं। सरकारी सब्सिडी का पूरा काम हम करते हैं। वाराणसी, भदोही, चित्रकूट, जौनपुर, प्रयागराज।">
 <meta property="og:title" content="Matoshree Enterprises: Your Solar Solution">
@@ -13,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#173a6e;--sun:#f39a1e;--sun-d:#c97f00;--paper:#fffaf2;--card:#fff;--line:#eadfc8;--wa:#1a9f53;--muted:#55627a}
+:root{color-scheme:light dark;--ink:#173a6e;--sun:#f39a1e;--sun-d:#c97f00;--paper:#fffaf2;--card:#fff;--line:#eadfc8;--wa:#1a9f53;--muted:#55627a}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{font-family:Hind,"Noto Sans Devanagari",system-ui,sans-serif;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.6;padding-bottom:0}
@@ -141,7 +144,11 @@ section{scroll-margin-top:72px}
 .badge .g{margin-top:2px;font-size:10.5px;line-height:1.25;font-weight:700;color:var(--ink);letter-spacing:.2px;text-shadow:0 0 4px #fff,0 0 4px #fff}
 .badge .g span{display:block;font-size:10px;letter-spacing:.4px;white-space:nowrap}
 @media(max-width:560px){.badge{left:8px}.badge img{width:54px;height:54px}.badge .g{font-size:9px}.badge .g span{font-size:8.5px;white-space:nowrap}}
-.bphoto{display:block;width:100%;max-width:260px;height:auto;border-radius:12px;margin-top:12px;border:2px solid #2c4876}
+.bphoto{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:14px;margin-top:14px;border:2px solid #2c4876;background:#1b3a6b}
+@media(min-width:700px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 36px}.fgrid>div:nth-child(1){order:1}.fgrid>div:nth-child(4){order:2}.fgrid>div:nth-child(2){order:3}.fgrid>div:nth-child(3){order:4}}
+.ci{display:flex;align-items:center;gap:10px;margin:8px 0}
+.ci svg{width:22px;height:22px;flex:0 0 22px;display:block}
+.ci a{word-break:break-word}
 
 /* ---- where we work: city tabs + endless photo slider ---- */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
@@ -175,6 +182,33 @@ section{scroll-margin-top:72px}
 .modal p{font-weight:600;line-height:1.5}
 .modal .btn.alt{background:#fff;color:var(--ink);border:2px solid var(--line)}
 [hidden]{display:none!important}
+
+/* ---- dark theme: follows the phone/browser setting. The hero artwork stays light on purpose. ---- */
+@media (prefers-color-scheme: dark){
+:root{--ink:#e7eef8;--paper:#0e1623;--card:#162133;--line:#2b3c57;--muted:#a6b5cb}
+header{background:#101a29;border-bottom-color:var(--line)}
+.brand img{background:#fff;border-radius:8px;padding:3px}
+.lang button[aria-pressed=true],.btn.sun,.gov,.steps li:before,.pipe li:before,.stat{color:#173a6e}
+.mbtn{background:var(--card)}
+.pmenu{background:var(--card);box-shadow:0 10px 26px rgba(0,0,0,.6)}
+.pmenu a:hover{background:#22324b}
+.hero{--ink:#173a6e;--muted:#55627a}
+input,select{background:#0f1a2a;border-color:var(--line)}
+.lead{background:#173a6e}
+.lead input,.lead select{background:#fff;color:#173a6e;border-color:#fff;color-scheme:light}
+.calc{border-color:var(--line)}
+.pipe li{border-color:#3d5679}
+#calc-sec{background:#131d2d!important}
+#work{background:#0b1320!important}
+.tabs button{background:var(--card);color:var(--ink);border-color:#3d5679}
+.tabs button[aria-selected=true]{background:var(--sun);color:#173a6e;border-color:var(--sun)}
+.slide{background:var(--card)}
+.slide img{background:#22324b}
+.cbtn{color:#173a6e}
+.pills span{background:#2b3c57}
+.modal .box{background:var(--card)}
+.modal .btn.alt{background:var(--card);color:var(--ink);border-color:var(--line)}
+}
 </style>
 </head>
 <body data-lang="hi">
@@ -303,11 +337,11 @@ section{scroll-margin-top:72px}
 <footer><div class="wrap">
   <div class="fgrid">
     <div><span class="flogo"><img src="logo.png" width="300" height="207" alt="Matoshree"></span><br><span class="hi">आपका सोलर साथी। सही सिस्टम, सब्सिडी के साथ।</span><span class="en">Your Solar Partner. The Right System, With Subsidy.</span></div>
-    <div><h3><span class="hi">शाखा 1: वाराणसी</span><span class="en">Branch 1: Varanasi</span></h3>AN 58, Shankarpuram Chauraha,<br>Benipur, Pahariya,<br>Varanasi - 221007<br><a href="https://www.google.com/maps/search/?api=1&amp;query=25.372750,83.006833" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="branch-1.png" width="900" height="937" loading="lazy" alt="Matoshree Enterprises showroom, Benipur, Pahariya, Varanasi"></div>
-    <div><h3><span class="hi">शाखा 2: चित्रकूट</span><span class="en">Branch 2: Chitrakoot</span></h3>Bankat Road, Karwi,<br>Chitrakoot, Uttar Pradesh 210205<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Bankat+Road+Karwi+Chitrakoot+210205" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a></div>
-    <div><h3><span class="hi">संपर्क</span><span class="en">Contact Us</span></h3>📞 <a data-tel href="#"></a><br>💬 <a data-wa href="#">WhatsApp</a><br>✉️ <a data-mail href="#"></a><br>▶️ <a href="https://www.youtube.com/@MatoshreeEnterprisesSolar" target="_blank" rel="noopener">YouTube</a><br><br><span class="soon"><span class="hi">जल्द आ रही है: भदोही शाखा</span><span class="en">Coming Soon: Bhadohi Branch</span></span></div>
+    <div><h3><span class="hi">शाखा 1: वाराणसी</span><span class="en">Branch 1: Varanasi</span></h3>AN 58, Shankarpuram Chauraha,<br>Benipur, Pahariya,<br>Varanasi - 221007<br><a href="https://www.google.com/maps/search/?api=1&amp;query=25.372750,83.006833" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="branch-1.jpg" width="1000" height="1000" loading="lazy" alt="Matoshree Enterprises showroom, Benipur, Pahariya, Varanasi"></div>
+    <div><h3><span class="hi">शाखा 2: चित्रकूट</span><span class="en">Branch 2: Chitrakoot</span></h3>Bankat Road, Karwi,<br>Chitrakoot,<br>Uttar Pradesh 210205<br><a href="https://www.google.com/maps?q=25.2287654876709,80.92034149169922&z=17&hl=en" target="_blank" rel="noopener"><span class="hi">नक्शे में देखें</span><span class="en">View On Map</span></a><img class="bphoto" src="branch-2.jpeg" width="1000" height="1000" loading="lazy" alt="Matoshree Enterprises showroom, Chitrakoot"></div>
+    <div><h3><span class="hi">संपर्क</span><span class="en">Contact Us</span></h3><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#f39a1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.33 1.78.62 2.62a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.46-1.19a2 2 0 012.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0122 16.92z"/></svg><a data-tel href="#"></a></div><div class="ci"><svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><a data-wa href="#">WhatsApp</a></div><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#9fc3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><a data-mail href="#"></a></div><div class="ci"><svg viewBox="0 0 24 24" fill="#ff0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><a href="https://www.youtube.com/@MatoshreeEnterprisesSolar" target="_blank" rel="noopener">YouTube</a></div><br><br><span class="soon"><span class="hi">जल्द आ रही है: भदोही शाखा</span><span class="en">Coming Soon: Bhadohi Branch</span></span></div>
   </div>
-  <p class="legal"><span class="hi">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>। हम एक स्वतंत्र सोलर इंस्टॉलर हैं, सरकारी संस्था नहीं। सब्सिडी भारत सरकार की PM Surya Ghar योजना के नियमों के अनुसार मिलती है।</span><span class="en">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GEXPD2013C1ZE</span>. We are an independent solar installer, not a government body. Subsidy is given under the Government of India's PM Surya Ghar scheme as per its rules.</span></p>
+  <p class="legal"><span class="hi">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GFXPD2013G1ZE</span>। हम एक स्वतंत्र सोलर इंस्टॉलर हैं, सरकारी संस्था नहीं। सब्सिडी भारत सरकार की PM Surya Ghar योजना के नियमों के अनुसार मिलती है।</span><span class="en">© Matoshree Enterprises · GSTIN: <span class="gstin2">09GFXPD2013G1ZE</span>. We are an independent solar installer, not a government body. Subsidy is given under the Government of India's PM Surya Ghar scheme as per its rules.</span></p>
 </div></footer>
 
 <a class="fab" data-wa href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
