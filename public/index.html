@@ -241,8 +241,8 @@ input,select{background:#0f1a2a;border-color:var(--line)}
   <img class="hlogo" src="logo-large.png" width="800" height="465" alt="Matoshree">
   <p class="tag">Powering Your Savings with Solar</p>
   <div class="hstats">
-    <div class="hs"><b id="orders" aria-label="92">92</b><span class="hi">इंस्टॉलेशन सफलतापूर्वक पूरे हुए</span><span class="en">Installations Completed Successfully</span></div>
-    <div class="hs live" id="liveBox"><b id="ongoing">5</b><span><i class="dot"></i><span class="hi">इंस्टॉलेशन प्रोसेस में हैं</span><span class="en">Installations Under Process</span></span></div>
+    <div class="hs"><b id="orders">–</b><span class="hi">इंस्टॉलेशन सफलतापूर्वक पूरे हुए</span><span class="en">Installations Completed Successfully</span></div>
+    <div class="hs live" id="liveBox" hidden><b id="ongoing">5</b><span><i class="dot"></i><span class="hi">इंस्टॉलेशन प्रोसेस में हैं</span><span class="en">Installations Under Process</span></span></div>
   </div>
 </div></div>
 
@@ -361,7 +361,7 @@ input,select{background:#0f1a2a;border-color:var(--line)}
 <script>
 if(typeof CFG==="undefined"){
   console.error("config.js did not load or has a syntax error. Using safe defaults; phone and WhatsApp links will not work until it is fixed.");
-  window.CFG={phone:"",phoneShow:"",email:"",fixedCost:15000,costPerKw:55000,orders:92,maxKw:10,tariff:7,unitsPerKwMonth:120};
+  window.CFG={phone:"",phoneShow:"",email:"",fixedCost:15000,costPerKw:55000,orders:106,maxKw:10,tariff:7,unitsPerKwMonth:120};
 }
 
 var body = document.body, lastCalc = "";
@@ -442,18 +442,27 @@ function countUp(el,end){
   requestAnimationFrame(tick);
 }
 (function(){
-  var started=false, el=document.getElementById("orders");
+  var el=document.getElementById("orders"), ongEl=document.getElementById("ongoing"), box=document.getElementById("liveBox");
   var DEF_ONGOING=(typeof CFG.ongoing==="number")?CFG.ongoing:5;
-  function run(orders,ongoing){
-    if(started) return; started=true;
-    countUp(el,orders);
-    var box=document.getElementById("liveBox"), og=(ongoing===null||ongoing===undefined)?DEF_ONGOING:+ongoing;
-    if(og>0){ document.getElementById("ongoing").textContent=og; box.hidden=false } else box.hidden=true;
+  var shown=false, live=false;
+  function setOngoing(v){
+    var og=(v===null||v===undefined)?DEF_ONGOING:+v;
+    if(og>0){ ongEl.textContent=og; box.hidden=false } else box.hidden=true;
   }
-  var timer=setTimeout(function(){run(CFG.orders,null)},1500);
-  fetch("/api/stats").then(function(r){return r.json()}).then(function(j){
-    clearTimeout(timer); run(+j.orders>0?+j.orders:CFG.orders, j.ongoing);
-  }).catch(function(){clearTimeout(timer); run(CFG.orders,null)});
+  /* isLive=true means the number came from the server. Once that is on screen nothing may overwrite it;
+     if only the fallback was shown (slow network), the real number replaces it when it arrives. */
+  function show(orders,ongoing,isLive){
+    if(live) return;
+    if(isLive) live=true;
+    setOngoing(ongoing);
+    if(!shown){ shown=true; countUp(el,orders) }
+    else if(isLive){ el.textContent=orders; el.setAttribute("aria-label",orders) }
+  }
+  /* Wait up to 5 s for the real number before falling back to config.js (cold start or slow mobile data). */
+  var timer=setTimeout(function(){ show(CFG.orders,null,false) },5000);
+  fetch("/api/stats",{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json() }).then(function(j){
+    clearTimeout(timer); show(+j.orders>0?+j.orders:CFG.orders, j.ongoing, true);
+  }).catch(function(){ clearTimeout(timer); show(CFG.orders,null,false) });
 })();
 
 /* Where we work: city tabs + endless slider. Photos and cities come from the admin page; a new city gets its own tab automatically. */
